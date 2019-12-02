@@ -1,2 +1,1 @@
-# saida
-Sistema para controle de vendas mensal
+Sistema de controle de vendas
