@@ -10,5 +10,5 @@
 		$query = mysqli_query($connect, "UPDATE $vendas SET $quantidade = $vetor_quantidade WHERE $codigo = $cod");
 		echo $vetor_quantidade;
 	} else{
-		echo 0;
+		echo $vetor_quantidade;
 	}

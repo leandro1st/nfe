@@ -16,25 +16,41 @@ $numero = mysqli_num_rows($procurar);
 	<script src="jquery/jquery-3.4.0.min.js"></script>
 	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript">
-		function cadastrar(id) {
+		function cadastrar(id, contador) {
+			var cont = parseInt(contador);
 			$.ajax({
 				type: "POST",
 				url: "cadastrar/adicionar1.php",
+				cache: false,
 				data: $("#form-" + id + '').serialize(),
 				success: function(data) {
 					document.getElementById("qntd-" + id + '').innerHTML = data;
+					if (data > 0 && data < 2) {
+						cont++;
+						document.getElementById('cont').innerHTML = cont;
+					}
 					//ok
 				},
 			});
 		}
 
-		function remover(id) {
+		function remover(id, contador) {
+			var cont = parseInt(contador);
 			$.ajax({
 				type: "POST",
 				url: "cadastrar/remover1.php",
+				cache: false,
 				data: $("#form-" + id + '').serialize(),
 				success: function(data) {
-					document.getElementById("qntd-" + id + '').innerHTML = data;
+					if (data == 0) {
+						cont--;
+						document.getElementById('cont').innerHTML = cont;
+						document.getElementById("qntd-" + id + '').innerHTML = data;
+					} else if (data < 0) {
+						document.getElementById("qntd-" + id + '').innerHTML = 0;
+					} else {
+						document.getElementById("qntd-" + id + '').innerHTML = data;
+					}
 					//ok
 				},
 			});
@@ -135,17 +151,19 @@ $numero = mysqli_num_rows($procurar);
 					// echo $contador;
 					?>
 					<form id="form-<?php echo $vetor['codigo']; ?>" method="POST">
-						<tr data-toggle="tooltip" data-html="true" title="<img width='100px' src='produtos/<?php echo $vetor['imagem'] ?>'>">
+						<tr>
 							<input type="hidden" class="form-control" name="cod" value="<?php echo $vetor['codigo']; ?>">
 							<td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
-							<td class="align-middle" width="70%"><b><?php echo $vetor['nome']; ?></b></td>
+							<td class="align-middle" width="70%" data-toggle="tooltip" data-html="true" title="<img width='100px' src='produtos/<?php echo $vetor['imagem'] ?>'>">
+								<b><?php echo $vetor['nome']; ?></b>
+							</td>
 							<td class="align-middle" width="5%" align="center" style="font-size:18px">
 								<b>
 									<font id="qntd-<?php echo $vetor['codigo']; ?>"><?php echo $vetor['quantidade']; ?></font>
 								</b>
 							</td>
-							<td align="center"><button class="btn btn-success" type="button" onclick="cadastrar(<?php echo $vetor['codigo']; ?>)">+1</button></td>
-							<td align="center"><button class="btn btn-danger" type="button" onclick="remover(<?php echo $vetor['codigo']; ?>)">-1</button></td>
+							<td align="center"><button class="btn btn-success" type="button" onclick="cadastrar('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML)">+1</button></td>
+							<td align="center"><button class="btn btn-danger" type="button" onclick="remover('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML)">-1</button></td>
 						</tr>
 					</form>
 				<?php } ?>
@@ -193,7 +211,8 @@ $numero = mysqli_num_rows($procurar);
 								<?php if ($contador == 1) { ?>
 									<h5 class="text-warning">Você irá zerar 1 registro!</h5>
 								<?php } else { ?>
-									<h5 class="text-warning" id="contagem2">Você irá zerar <font id='cont'><?php echo $contador ?></font> registros!</h5>
+									<h5 class="text-warning">Você irá zerar <span id='cont'><?php echo $contador ?></span> registro(s)!</h5>
+									<!-- <h5 class="text-warning">Você irá zerar <input id='cont' value="<?php echo $contador ?>" style="all:unset; text-align:center; cursor:text; width:30px;" readonly> registros!</h5> -->
 								<?php } ?>
 							</div>
 						</div>
