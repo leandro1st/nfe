@@ -122,6 +122,7 @@ $numero = mysqli_num_rows($procurar);
 				$mes = $meses[date('m')];
 				?>
 				<font color="white"><?php print $mes . ' - ' . date('Y'); ?></font><br>
+				<a href="export.php"><button class="btn btn-success">Exportar como .xlsx</button></a>
 			</h1>
 		</center>
 	</div>
