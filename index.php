@@ -2,6 +2,9 @@
 require('externo/connect.php');
 $procurar = mysqli_query($connect, "SELECT * FROM $vendas ORDER BY nome ASC");
 $numero = mysqli_num_rows($procurar);
+$pesquisar_maior_id = mysqli_query($connect, "SELECT codigo FROM $vendas ORDER BY codigo DESC LIMIT 1");
+$vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,20 +59,33 @@ $numero = mysqli_num_rows($procurar);
 			});
 		}
 
-		function excluirTudo() {
-			$.ajax({
-				method: 'POST',
-				url: 'cadastrar/zerar.php',
-				data: $('#form_excluirTudo').serialize(),
-				success: function(data) {
-					document.location.reload(true);
-				},
-			});
-		}
+		// function excluirTudo(maior_id) {
+		// 	$.ajax({
+		// 		method: 'POST',
+		// 		url: 'cadastrar/zerar.php',
+		// 		data: $('#form_excluirTudo').serialize(),
+		// 		success: function(data) {
+		// 			// for (var i = 1; i <= maior_id; i++) {
+		// 			// 	documnent.getElementById('qntd-' + i).innerHTML = data;
+		// 			// }
+		// 			location.reload();
+		// 		},
+		// 	});
+		// }
 
 		$(function() {
 			$('[data-toggle="tooltip"]').tooltip()
 		})
+
+		$(document).ready(function() {
+			var meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+			var month = new Date().getMonth();
+			for (var i = 0; i < 12; i++) {
+				if (month == i) {
+					document.getElementById(meses[i]).selected = true;
+				}
+			}
+		});
 	</script>
 </head>
 
@@ -103,7 +119,7 @@ $numero = mysqli_num_rows($procurar);
 	</nav>
 	<div class="jumbotron" style="background-image: url('imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
 		<center>
-			<h1>
+			<h1 style="color: white">
 				<?php
 				$meses = array(
 					'01' => 'Janeiro',
@@ -121,8 +137,28 @@ $numero = mysqli_num_rows($procurar);
 				);
 				$mes = $meses[date('m')];
 				?>
-				<font color="white"><?php print $mes . ' - ' . date('Y'); ?></font><br>
-				<a href="export.php"><button class="btn btn-success">Exportar como .xlsx</button></a>
+				<?php print $mes . ' - ' . date('Y'); ?>
+				<div class="form-inline" style="position: absolute; left: 75%; top: 157px">
+					<form action="export.php" id="exportar_excel" method="POST">
+						<select class="form-control" id="mes_ano" name="mes_ano" style="width: 125px;">
+							<option id="jan" value="Janeiro">Janeiro</option>
+							<option id="fev" value="Fevereiro">Fevereiro</option>
+							<option id="mar" value="Marco">Março</option>
+							<option id="abr" value="Abril">Abril</option>
+							<option id="mai" value="Maio">Maio</option>
+							<option id="jun" value="Junho">Junho</option>
+							<option id="jul" value="Julho">Julho</option>
+							<option id="ago" value="Agosto">Agosto</option>
+							<option id="set" value="Setembro">Setembro</option>
+							<option id="out" value="Outubro">Outubro</option>
+							<option id="nov" value="Novembro">Novembro</option>
+							<option id="dez" value="Dezembro">Dezembro</option>
+						</select>
+						<button class="btn btn-success">
+							Gerar Excel <i class="far fa-file-excel"></i>
+						</button>
+					</form>
+				</div>
 			</h1>
 		</center>
 	</div>
@@ -150,7 +186,7 @@ $numero = mysqli_num_rows($procurar);
 						$contador++;
 					}
 					// echo $contador;
-					?>
+				?>
 					<form id="form-<?php echo $vetor['codigo']; ?>" method="POST">
 						<tr>
 							<input type="hidden" class="form-control" name="cod" value="<?php echo $vetor['codigo']; ?>">
@@ -194,38 +230,40 @@ $numero = mysqli_num_rows($procurar);
 	</footer>
 	<!-- Footer -->
 	<!-- Modal excluir tudo -->
-	<form id="form_excluirTudo" method="POST">
-		<div class="modal fade" id="modalExcluirTudo" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTudoTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="modalTitle" class="text-danger">
-							Deseja realmente zerar todos os registros?
-						</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="row">
-							<div class="col-9">
-								<?php if ($contador == 1) { ?>
-									<h5 class="text-warning">Você irá zerar 1 registro!</h5>
-								<?php } else { ?>
-									<h5 class="text-warning">Você irá zerar <span id='cont'><?php echo $contador ?></span> registro(s)!</h5>
-									<!-- <h5 class="text-warning">Você irá zerar <input id='cont' value="<?php echo $contador ?>" style="all:unset; text-align:center; cursor:text; width:30px;" readonly> registros!</h5> -->
-								<?php } ?>
-							</div>
+	<div class="modal fade" id="modalExcluirTudo" tabindex="-1" role="dialog" aria-labelledby="modalExcluirTudoTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="modalTitle" class="text-danger">
+						Deseja realmente zerar todos os registros?
+					</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-9">
+							<?php if ($contador == 1) { ?>
+								<h5 class="text-warning">Você irá zerar 1 registro!</h5>
+							<?php } else { ?>
+								<h5 class="text-warning">Você irá zerar <span id='cont'><?php echo $contador ?></span> registro(s)!</h5>
+								<!-- <h5 class="text-warning">Você irá zerar <input id='cont' value="<?php echo $contador ?>" style="all:unset; text-align:center; cursor:text; width:30px;" readonly> registros!</h5> -->
+							<?php } ?>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-						<button type="submit" id="btn_modal_excluir" class="btn btn-danger" onclick="excluirTudo()">Zerar tudo</button>
-					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<form id="form_excluirTudo" method="POST" action="cadastrar/zerar.php">
+						<!-- <input type="hidden" name="verificador" value="<?php echo $vetor['codigo']; ?>"> -->
+						<input type="submit" name="btn_modal_excluir" id="btn_modal_excluir" class="btn btn-danger" value="Zerar tudo"></button><!-- onclick="excluirTudo(<?php echo $vetor_maior_id['codigo'] ?>)" -->
+					</form>
 				</div>
 			</div>
 		</div>
-	</form><!-- Modal excluir tudo -->
+	</div><!-- Modal excluir tudo -->
+
 </body>
 
 </html>
