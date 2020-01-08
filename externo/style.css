@@ -101,3 +101,62 @@ a.btn-social, .btn-social {
 a:link {
     text-decoration: none;
 }
+
+/* Largura do scrollbar */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background-color: #535867;
+    border-radius: 0px;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .5);
+    border-radius: 4px;
+}
+
+/* Autocomplete jquery */
+.ui-autocomplete {
+    top: 61.5px !important;
+    left: 940px !important;
+    max-height: 380px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-width: 300px !important;
+    border: none !important;
+}
+
+.ui-autocomplete-row {
+    margin: 0 !important;
+    padding: 8px;
+    background-color: #f4f4f4;
+    font-weight: bold;
+    margin-right: -20px !important;
+    margin-left: -20px !important;
+}
+
+.ui-autocomplete-row:hover {
+    margin: 0 !important;
+    background-color: #e4f2f2;
+    font-weight: bold;
+    color: black;
+    margin-right: -20px !important;
+    margin-left: -20px !important;
+}
+
+.ui-menu-item .ui-menu-item-wrapper.ui-state-active {
+    margin: 0 !important;
+    background: none !important;
+    border: none !important;
+    font-weight: bold;
+    color: black;
+    
+}
+/* Autocomplete jquery */

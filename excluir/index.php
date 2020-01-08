@@ -13,7 +13,9 @@ $numero = mysqli_num_rows($procurar);
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/nfe.ico" type="image/x-icon">
     <link rel="stylesheet" href="../externo/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <script src="../jquery/jquery-3.4.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
         function nomeProduto(nome, codigo) {
@@ -35,6 +37,20 @@ $numero = mysqli_num_rows($procurar);
                 },
             });
         }
+        $(document).ready(function() {
+            $('#nome_produto').autocomplete({
+                source: "../alterar/pesquisar_autocomplete.php",
+                minLength: 3,
+                select: function(event, ui) {
+                    $('#nome_produto').val(ui.item.value);
+                }
+            }).data('ui-autocomplete')._renderItem = function(ul, item) {
+                return $("<li class='ui-autocomplete-row'></li>")
+                    .data("item.autocomplete", item)
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+        });
     </script>
 </head>
 
@@ -61,9 +77,9 @@ $numero = mysqli_num_rows($procurar);
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="POST" action="../alterar/">
-				<input class="form-control mr-sm-2" name="nome_produto" placeholder="Nome do produto" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-			</form>
+                <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome do produto" aria-label="Search" autocomplete="off">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
         </div>
     </nav>
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
@@ -95,7 +111,7 @@ $numero = mysqli_num_rows($procurar);
                 $contador = 0;
                 for ($i = 0; $i < $numero; $i++) {
                     $vetor = mysqli_fetch_array($procurar);
-                    ?>
+                ?>
                     <form id="form-<?php echo $vetor['codigo']; ?>" method="POST">
                         <tr id="linha-<?php echo $vetor['codigo']; ?>">
                             <input type="hidden" class="form-control" name="codigo_produto" value="<?php echo $vetor['codigo']; ?>">

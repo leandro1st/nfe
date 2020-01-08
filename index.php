@@ -16,7 +16,9 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="shortcut icon" href="imagens/nfe.ico" type="image/x-icon">
 	<link rel="stylesheet" href="externo/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 	<script src="jquery/jquery-3.4.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript">
 		function cadastrar(id, contador) {
@@ -86,6 +88,21 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 				}
 			}
 		});
+
+		$(document).ready(function() {
+			$('#nome_produto').autocomplete({
+				source: "alterar/pesquisar_autocomplete_index.php",
+				minLength: 3,
+				select: function(event, ui) {
+					$('#nome_produto').val(ui.item.value);
+				}
+			}).data('ui-autocomplete')._renderItem = function(ul, item) {
+				return $("<li class='ui-autocomplete-row'></li>")
+					.data("item.autocomplete", item)
+					.append(item.label)
+					.appendTo(ul);
+			};
+		});
 	</script>
 </head>
 
@@ -112,7 +129,7 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0" method="POST" action="alterar/">
-				<input class="form-control mr-sm-2" name="nome_produto" placeholder="Nome do produto" aria-label="Search">
+				<input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome do produto" aria-label="Search" autocomplete="off">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
 			</form>
 		</div>
@@ -191,7 +208,8 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 						<tr>
 							<input type="hidden" class="form-control" name="cod" value="<?php echo $vetor['codigo']; ?>">
 							<td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
-							<td class="align-middle" width="70%" data-toggle="tooltip" data-html="true" title="<img width='100px' src='produtos/<?php echo $vetor['imagem'] ?>'>">
+							<td class="align-middle" width="70%">
+								<!--  data-toggle="tooltip" data-html="true" title="<img width='100px' src='produtos/<?php echo $vetor['imagem'] ?>'>" -->
 								<b><?php echo $vetor['nome']; ?></b>
 							</td>
 							<td class="align-middle" width="5%" align="center" style="font-size:18px">

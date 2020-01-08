@@ -10,12 +10,21 @@ $vetor = mysqli_fetch_array($procurar);
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title id="titulo_site">NF-e | <?php echo $vetor['nome'] ?></title>
+    <title id="titulo_site">
+        <?php
+        if ($numero == 0) {
+            echo "NF-e | Pesquisar";
+        } else {
+            echo "NF-e | " . $vetor['nome'] . "";
+        } ?>
+    </title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/nfe.ico" type="image/x-icon">
     <link rel="stylesheet" href="../externo/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <script src="../jquery/jquery-3.4.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
         function alterar(nome, id) {
@@ -43,6 +52,20 @@ $vetor = mysqli_fetch_array($procurar);
                 },
             });
         }
+        $(document).ready(function() {
+            $('#nome_produto').autocomplete({
+                source: "../alterar/pesquisar_autocomplete.php",
+                minLength: 3,
+                select: function(event, ui) {
+                    $('#nome_produto').val(ui.item.value);
+                }
+            }).data('ui-autocomplete')._renderItem = function(ul, item) {
+                return $("<li class='ui-autocomplete-row'></li>")
+                    .data("item.autocomplete", item)
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+        });
     </script>
 </head>
 
@@ -72,9 +95,9 @@ $vetor = mysqli_fetch_array($procurar);
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="POST" action="./">
-				<input class="form-control mr-sm-2" name="nome_produto" placeholder="Nome do produto" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-			</form>
+                <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome do produto" aria-label="Search" autocomplete="off">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
         </div>
     </nav>
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
@@ -94,7 +117,7 @@ $vetor = mysqli_fetch_array($procurar);
         <?php
         $contador = 0;
         if ($numero > 0) {
-            ?>
+        ?>
             <form id="form-alterar" method="POST">
                 <div class="card mb-3">
                     <div class="row">
@@ -134,7 +157,9 @@ $vetor = mysqli_fetch_array($procurar);
             </form>
         <?php } else { ?>
             <br><br>
-            <center><p class="lead" style="font-size: 30px;">Nenhum cadastro encontrado!</p></center>
+            <center>
+                <p class="lead" style="font-size: 30px;">Nenhum cadastro encontrado!</p>
+            </center>
         <?php } ?>
     </main><br><br><br><br><br><br><br><br><br>
     <footer class="footer">
