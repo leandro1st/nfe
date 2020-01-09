@@ -16,10 +16,11 @@
         $(document).ready(function() {
             $('#nome_produto').autocomplete({
                 source: "../alterar/pesquisar_autocomplete.php",
-                minLength: 3,
+                minLength: 1,
                 select: function(event, ui) {
                     $('#nome_produto').val(ui.item.value);
-                }
+                },
+                appendTo: "#div_autocomplete"
             }).data('ui-autocomplete')._renderItem = function(ul, item) {
                 return $("<li class='ui-autocomplete-row'></li>")
                     .data("item.autocomplete", item)
@@ -45,28 +46,30 @@
                 <li class="nav-item px-1">
                     <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
-                <li class="nav-item px-1 active underline">
-                    <a class="nav-link text-success" href="#">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
-                </li>
-                <li class="nav-item px-1">
-                    <a class="nav-link text-danger" href="../excluir/">Excluir <i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
-                </li>
+                <li class="nav-item px-1 active">
+					<a class="nav-link text-success underline" href="#"><i class="far fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+				</li>
+				<li class="nav-item px-1">
+					<a class="nav-link text-danger" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
+				</li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="POST" action="../alterar/">
-                <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome do produto" aria-label="Search" autocomplete="off">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+                <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+                <div id="div_autocomplete">
+                </div>
+                <button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>
             </form>
         </div>
     </nav>
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
         <ol class="breadcrumb" style="background: none; margin: 0;">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
-            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="fas fa-plus-circle"></i> Cadastrar Produto</a></li>
+            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="far fa-edit"></i> Cadastrar Produtos</a></li>
         </ol>
     </nav>
     <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
         <center>
-            <h1 style="color: white">Cadastrar Produto</h1>
+            <h1 style="color: white">Cadastrar Produtos</h1>
         </center>
     </div>
     <main class="container">

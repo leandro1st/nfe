@@ -92,10 +92,11 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 		$(document).ready(function() {
 			$('#nome_produto').autocomplete({
 				source: "alterar/pesquisar_autocomplete_index.php",
-				minLength: 3,
+				minLength: 1,
 				select: function(event, ui) {
 					$('#nome_produto').val(ui.item.value);
-				}
+				},
+				appendTo: "#div_autocomplete"
 			}).data('ui-autocomplete')._renderItem = function(ul, item) {
 				return $("<li class='ui-autocomplete-row'></li>")
 					.data("item.autocomplete", item)
@@ -118,19 +119,21 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item px-1 active underline">
-					<a class="nav-link" href="#"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
+				<li class="nav-item px-1 active">
+					<a class="nav-link underline" href="#"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
 				</li>
 				<li class="nav-item px-1">
-					<a class="nav-link text-success" href="cadastrar/">Cadastrar <i class="fas fa-plus-circle text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+					<a class="nav-link text-success" href="cadastrar/"><i class="far fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
 				</li>
 				<li class="nav-item px-1">
-					<a class="nav-link text-danger" href="excluir/">Excluir <i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
+					<a class="nav-link text-danger" href="excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0" method="POST" action="alterar/">
-				<input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome do produto" aria-label="Search" autocomplete="off">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+				<input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+				<div id="div_autocomplete">
+				</div>
+				<button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>
 			</form>
 		</div>
 	</nav>

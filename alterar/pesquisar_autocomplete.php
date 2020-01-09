@@ -4,7 +4,9 @@
 if (isset($_GET["term"])) {
     $connect = new PDO("mysql:host=localhost; dbname=nfe", "root", "");
 
-    $query = "SELECT * FROM vendas WHERE nome LIKE '%" . trim($_GET["term"]) . "%' ORDER BY nome ASC";
+    $term = mb_convert_case(trim($_GET['term']), MB_CASE_UPPER, 'utf-8');
+
+    $query = "SELECT * FROM vendas WHERE nome LIKE '%" . $term . "%' or id LIKE '%" . $term . "%' ORDER BY nome ASC";
 
     $statement = $connect->prepare($query);
 
