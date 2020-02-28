@@ -119,8 +119,8 @@ $numero = mysqli_num_rows($procurar);
                         <tr id="linha-<?php echo $vetor['codigo']; ?>">
                             <input type="hidden" class="form-control" name="codigo_produto" value="<?php echo $vetor['codigo']; ?>">
                             <td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
-                            <td class="align-middle" width="70%"><b><?php echo $vetor['nome']; ?></b></td>
-                            <td align="center">
+                            <td class="align-middle" width="75%"><b><?php echo $vetor['nome']; ?></b></td>
+                            <td align="center" width="7%">
                                 <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" onclick="nomeProduto('<?php echo $vetor['nome']; ?>', '<?php echo $vetor['codigo']; ?>')" style="color: red; font-size: 28px; cursor: pointer;">
                             </td>
                         </tr>
