@@ -144,8 +144,8 @@ if (isset($_POST['nome_produto'])) {
                 <form id="form-alterar" method="POST">
                     <div class="card mb-3">
                         <div class="row">
-                            <div class="col-md-3">
-                                <img src="../produtos/<?php echo $vetor['imagem'] ?>" class="card-img" alt="Foto Produto">
+                            <div class="col-md-3" style="padding: 22px 0px 0px 40px">
+                                <img src="../produtos/<?php echo $vetor['imagem'] ?>" class="rounded card-img" alt="Foto Produto">
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">
