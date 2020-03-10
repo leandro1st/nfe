@@ -47,11 +47,11 @@
                     <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
                 <li class="nav-item px-1 active">
-					<a class="nav-link text-success underline" href="#"><i class="far fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
-				</li>
-				<li class="nav-item px-1">
-					<a class="nav-link text-danger" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
-				</li>
+                    <a class="nav-link underline" href="#"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+                </li>
+                <li class="nav-item px-1">
+                    <a class="nav-link" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="POST" action="../alterar/">
                 <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
@@ -64,24 +64,34 @@
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
         <ol class="breadcrumb" style="background: none; margin: 0;">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
-            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="far fa-edit"></i> Cadastrar Produtos</a></li>
+            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="far fa-edit"></i> Cadastrar Produto</a></li>
         </ol>
     </nav>
     <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
         <center>
-            <h1 style="color: white">Cadastrar Produtos</h1>
+            <h1 style="color: white">Cadastrar Produto</h1>
         </center>
     </div>
     <main class="container">
-        <form method="POST" action="cadastrar_produto.php">
-            <label for="campo_nome">
-                <b>Nome do produto:</b>
-            </label>
-            <input type="text" id="campo_nome" name="nome" class="form-control" placeholder="Nome do produto" required autofocus><br>
-            <label for="campo_id">
-                <b>Referência do produto:</b>
-            </label>
-            <input type="text" id="campo_id" name="id" class="form-control" placeholder="Referência do produto" required><br>
+        <form method="POST" action="cadastrar_produto.php" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="campo_nome">
+                    <b>Nome do produto:</b>
+                </label>
+                <input type="text" id="campo_nome" name="nome" class="form-control" placeholder="Nome do produto" required autofocus>
+                <div class="invalid-feedback">
+                    Forneça o nome do produto!
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="campo_id">
+                    <b>Referência do produto:</b>
+                </label>
+                <input type="text" id="campo_id" name="id" class="form-control" placeholder="Referência do produto" required>
+                <div class="invalid-feedback">
+                    Forneça a referência do produto!
+                </div>
+            </div>
             <button type="submit" class="btn btn-success" style="float: right">Cadastrar</button>
         </form>
     </main><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -107,6 +117,27 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 </body>
 
 </html>

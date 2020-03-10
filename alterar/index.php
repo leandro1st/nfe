@@ -18,7 +18,7 @@ if (isset($_POST['nome_produto'])) {
         <title id="titulo_site">
             <?php
             if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) {
-                echo "NF-e | Editar Produto";
+                echo "NF-e | Pesquisar";
             } else if ($numero > 0) {
                 echo "NF-e | " . $vetor['nome'] . "";
             } else {
@@ -94,13 +94,13 @@ if (isset($_POST['nome_produto'])) {
                         <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                     </li>
                     <li class="nav-item px-1">
-                        <a class="nav-link text-success" href="../cadastrar/"><i class="far fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+                        <a class="nav-link" href="../cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                     </li>
                     <li class="nav-item px-1">
-                        <a class="nav-link text-danger" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
+                        <a class="nav-link" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
                     </li>
                     <li class="nav-item px-1 active">
-                        <a class="nav-link text-primary underline" href="#"><i class="fas fa-pen text-primary" style="font-size: 24px; vertical-align: middle"></i> </a>
+                        <a class="nav-link underline" href="#"><i class="fas fa-search text-white" style="font-size: 24px; vertical-align: middle"></i> </a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" method="POST" action="./">
@@ -115,14 +115,14 @@ if (isset($_POST['nome_produto'])) {
             <ol class="breadcrumb" style="background: none; margin: 0;">
                 <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
                 <li class="breadcrumb-item active">
-                    <a href="#" class="none_li"><i class="fas fa-pen"></i>
+                    <a href="#" class="none_li"><i class="fas fa-search text-white"></i>
                         <?php
                         if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) {
-                            echo "Editar Produto";
+                            echo "Pesquisar";
                         } else if ($numero > 0) {
-                            echo  "Editar Produto | " . $vetor['nome'];
+                            echo  "Pesquisar | " . $vetor['nome'];
                         } else {
-                            echo "Editar Produto | " . trim($_POST['nome_produto']) . "";
+                            echo "Pesquisar | " . trim($_POST['nome_produto']) . "";
                         }
                         ?>
                     </a>
@@ -132,7 +132,15 @@ if (isset($_POST['nome_produto'])) {
         <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
             <center>
                 <h1>
-                    <font color="white">Editar Produto</font><br>
+                    <font color="white">
+                        <?php if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) { ?>
+                            Pesquisar
+                        <?php } else if ($numero > 0) {
+                            echo $vetor['nome'];
+                        } else {
+                            echo "Pesquisar";
+                        } ?>
+                    </font>
                 </h1>
             </center>
         </div>
