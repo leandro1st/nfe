@@ -14,6 +14,9 @@
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#form_cadastrar')[0].reset();
+        });
+        $(document).ready(function() {
             $('#nome_produto').autocomplete({
                 source: "../alterar/pesquisar_autocomplete.php",
                 minLength: 1,
@@ -73,7 +76,7 @@
         </center>
     </div>
     <main class="container">
-        <form method="POST" action="cadastrar_produto.php" class="needs-validation" novalidate>
+        <form id="form_cadastrar" method="POST" action="cadastrar_produto.php" class="needs-validation" novalidate>
             <div class="form-group">
                 <label for="campo_nome">
                     <b>Nome do produto:</b>

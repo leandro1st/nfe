@@ -5,6 +5,8 @@ $numero = mysqli_num_rows($procurar);
 $pesquisar_maior_id = mysqli_query($connect, "SELECT codigo FROM $vendas ORDER BY codigo DESC LIMIT 1");
 $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 
+$pesquisar_ultima_data = mysqli_query($connect, "SELECT * FROM $observacao");
+$vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +23,7 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript">
-		function cadastrar(id, contador) {
+		function cadastrar(id, contador, ultima_quantidade) {
 			var cont = parseInt(contador);
 			$.ajax({
 				type: "POST",
@@ -30,6 +32,15 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 				data: $("#form-" + id + '').serialize(),
 				success: function(data) {
 					document.getElementById("qntd-" + id + '').innerHTML = data;
+					if (data - ultima_quantidade > 0) {
+						document.getElementById("adicionado-" + id + '').className = "text-success";
+					} else if (data - ultima_quantidade == 0) {
+						document.getElementById("adicionado-" + id + '').className = "";
+					} else {
+						document.getElementById("adicionado-" + id + '').className = "text-danger";
+					}
+					document.getElementById("adicionado-" + id + '').innerHTML = data - ultima_quantidade;
+					// alert(data - ultima_quantidade);
 					if (data > 0 && data < 2) {
 						cont++;
 						document.getElementById('cont').innerHTML = cont;
@@ -39,7 +50,7 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 			});
 		}
 
-		function remover(id, contador) {
+		function remover(id, contador, ultima_quantidade) {
 			var cont = parseInt(contador);
 			$.ajax({
 				type: "POST",
@@ -51,10 +62,21 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 						cont--;
 						document.getElementById('cont').innerHTML = cont;
 						document.getElementById("qntd-" + id + '').innerHTML = data;
+						document.getElementById("adicionado-" + id + '').innerHTML = data - ultima_quantidade;
 					} else if (data < 0) {
 						document.getElementById("qntd-" + id + '').innerHTML = 0;
 					} else {
 						document.getElementById("qntd-" + id + '').innerHTML = data;
+						document.getElementById("adicionado-" + id + '').innerHTML = data - ultima_quantidade;
+					}
+					if (data - ultima_quantidade > 0) {
+						document.getElementById("adicionado-" + id + '').className = "text-success";
+					} else if (data - ultima_quantidade == 0) {
+						document.getElementById("adicionado-" + id + '').className = "";
+					} else if (data < 0) {
+						document.getElementById("adicionado-" + id + '').className = "";
+					} else {
+						document.getElementById("adicionado-" + id + '').className = "text-danger";
 					}
 					//ok
 				},
@@ -183,11 +205,33 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 		</center>
 	</div>
 	<main class="container">
+		<form action="cadastrar/observacao.php" method="post">
+			<div class="accordion" id="accordionObs" style="margin-bottom: 1.5em">
+				<div class="card">
+					<div class="card-header collapsed" id="heading_1" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" aria-controls="collapse_1" style="cursor: pointer;">
+						<h5 class="accordion-toggle" style="margin: 0px">
+							<span class="text-danger">Feito até o dia <?php echo date("d/m/Y", strtotime($vetor_ultima_data['ultima_data'])) ?></span>
+						</h5>
+					</div>
+					<div id="collapse_1" class="collapse" aria-labelledby="heading_1" data-parent="#accordionObs">
+						<div class="card-body" style="padding: 15px 40px 0px 40px;">
+							<div class="form-group row">
+								<label for="data" class="col-form-label" style="margin-right: 5px">Feito até o dia:</label>
+								<input id="data" name="data" type="date" class="form-control" style="width: 180px; margin-right: 8px" required>
+								<button type="submit" class="btn btn-success">Confirmar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+
 		<table class="table table-striped table-light table-hover" id="tabela_produtos">
 			<thead>
 				<tr align="center" class="table-warning">
 					<th>#</th>
 					<th>NOME</th>
+					<th><i class="fas fa-history text-success" style="font-size: 22px" data-toggle="tooltip" data-html="true" title="<b>Última atividade</b>"></i></th>
 					<th>QUANTIDADE</th>
 					<th><i class="far fa-edit" style="color: green; font-size: 22px;" data-toggle="tooltip" data-html="true" title="<i><b>Adicionar 1</b></i>"></i></th>
 					<th>
@@ -214,14 +258,22 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 							<td class="align-middle" width="70%">
 								<!--  data-toggle="tooltip" data-html="true" title="<img width='100px' src='produtos/<?php echo $vetor['imagem'] ?>'>" -->
 								<b><?php echo $vetor['nome']; ?></b>
+								<?php if ($vetor['ultima_mod'] != "0000-00-00 00:00:00") { ?>
+									<small class="text-muted"> (Última modificação: <?php echo date("d/m/Y H:i:s", strtotime($vetor['ultima_mod'])) ?>)</small>
+								<?php } ?>
 							</td>
 							<td class="align-middle" width="5%" align="center" style="font-size:18px">
 								<b>
-									<font id="qntd-<?php echo $vetor['codigo']; ?>"><?php echo $vetor['quantidade']; ?></font>
+									<font id="adicionado-<?php echo $vetor['codigo']; ?>">0</font>
 								</b>
 							</td>
-							<td align="center"><button class="btn btn-success" type="button" onclick="cadastrar('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML)">+1</button></td>
-							<td align="center"><button class="btn btn-danger" type="button" onclick="remover('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML)">-1</button></td>
+							<td class="align-middle" width="5%" align="center" style="font-size:18px">
+								<b>
+									<font id="qntd-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" title="Última contagem: <?php echo $vetor['quantidade'] ?>"><?php echo $vetor['quantidade']; ?></font>
+								</b>
+							</td>
+							<td align="center"><button class="btn btn-success" type="button" onclick="cadastrar('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>')">+1</button></td>
+							<td align="center"><button class="btn btn-danger" type="button" onclick="remover('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>')">-1</button></td>
 						</tr>
 					</form>
 				<?php } ?>
