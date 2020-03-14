@@ -87,6 +87,15 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="campo_cod_athos">
+                    <b>Código Athos do produto:</b>
+                </label>
+                <input type="text" id="campo_cod_athos" name="codigo_athos" class="form-control" placeholder="Código do produto" required>
+                <div class="invalid-feedback">
+                    Forneça o código Athos do produto!
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="campo_id">
                     <b>Referência do produto:</b>
                 </label>

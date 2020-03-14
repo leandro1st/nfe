@@ -44,6 +44,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 					if (data > 0 && data < 2) {
 						cont++;
 						document.getElementById('cont').innerHTML = cont;
+						document.getElementById('input_contador').value = cont;
 					}
 					//ok
 				},
@@ -61,6 +62,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 					if (data == 0) {
 						cont--;
 						document.getElementById('cont').innerHTML = cont;
+						document.getElementById('input_contador').value = cont;
 						document.getElementById("qntd-" + id + '').innerHTML = data;
 						document.getElementById("adicionado-" + id + '').innerHTML = data - ultima_quantidade;
 					} else if (data < 0) {
@@ -71,9 +73,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 					}
 					if (data - ultima_quantidade > 0) {
 						document.getElementById("adicionado-" + id + '').className = "text-success";
-					} else if (data - ultima_quantidade == 0) {
-						document.getElementById("adicionado-" + id + '').className = "";
-					} else if (data < 0) {
+					} else if (document.getElementById("adicionado-" + id + '').innerHTML == 0) {
 						document.getElementById("adicionado-" + id + '').className = "";
 					} else {
 						document.getElementById("adicionado-" + id + '').className = "text-danger";
@@ -145,11 +145,16 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 					<a class="nav-link underline" href="#"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
 				</li>
 				<li class="nav-item px-1">
-					<a class="nav-link text-success" href="cadastrar/"><i class="far fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+					<a class="nav-link" href="cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
 				</li>
 				<li class="nav-item px-1">
-					<a class="nav-link text-danger" href="excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
+					<a class="nav-link" href="excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
 				</li>
+				<!-- apagar depois -->
+				<li class="nav-item px-1">
+					<a class="nav-link" href="alterar_cod_athos.php"><i class="fas fa-archive text-warning" style="font-size: 24px; vertical-align: middle"></i> </a>
+				</li>
+				<!-- apagar -->
 			</ul>
 			<form class="form-inline my-2 my-lg-0" method="POST" action="alterar/">
 				<input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
@@ -185,7 +190,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 						<select class="form-control" id="mes_ano" name="mes_ano" style="width: 125px;">
 							<option id="jan" value="Janeiro">Janeiro</option>
 							<option id="fev" value="Fevereiro">Fevereiro</option>
-							<option id="mar" value="Marco">Março</option>
+							<option id="mar" value="Março">Março</option>
 							<option id="abr" value="Abril">Abril</option>
 							<option id="mai" value="Maio">Maio</option>
 							<option id="jun" value="Junho">Junho</option>
@@ -229,7 +234,8 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 		<table class="table table-striped table-light table-hover" id="tabela_produtos">
 			<thead>
 				<tr align="center" class="table-warning">
-					<th>#</th>
+					<th>Código Athos</th>
+					<th>Referência</th>
 					<th>NOME</th>
 					<th><i class="fas fa-history text-success" style="font-size: 22px" data-toggle="tooltip" data-html="true" title="<b>Última atividade</b>"></i></th>
 					<th>QUANTIDADE</th>
@@ -254,6 +260,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 					<form id="form-<?php echo $vetor['codigo']; ?>" method="POST">
 						<tr>
 							<input type="hidden" class="form-control" name="cod" value="<?php echo $vetor['codigo']; ?>">
+							<td class="align-middle" align="center"><b><?php echo $vetor['cod_athos']; ?></b></td>
 							<td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
 							<td class="align-middle" width="70%">
 								<!--  data-toggle="tooltip" data-html="true" title="<img width='100px' src='produtos/<?php echo $vetor['imagem'] ?>'>" -->
@@ -330,6 +337,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 					<form id="form_excluirTudo" method="POST" action="cadastrar/zerar.php">
 						<!-- <input type="hidden" name="verificador" value="<?php echo $vetor['codigo']; ?>"> -->
+						<input type="hidden" id="input_contador" name="input_contador" value="<?php echo $contador ?>">
 						<input type="submit" name="btn_modal_excluir" id="btn_modal_excluir" class="btn btn-danger" value="Zerar tudo"></button><!-- onclick="excluirTudo(<?php echo $vetor_maior_id['codigo'] ?>)" -->
 					</form>
 				</div>

@@ -8,6 +8,7 @@
 	$quantidade = "quantidade";
 	$id = "id";
 	$codigo = "codigo";
+	$cod_athos = "cod_athos";
 	$nome = "nome";
 	$ultima_mod = "ultima_mod";
 	$ultima_data = "ultima_data";

@@ -71,10 +71,10 @@ $numero = mysqli_num_rows($procurar);
                     <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
                 <li class="nav-item px-1">
-					<a class="nav-link text-success" href="../cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+					<a class="nav-link" href="../cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
 				</li>
 				<li class="nav-item px-1 active">
-					<a class="nav-link text-danger underline" href="#"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
+					<a class="nav-link underline" href="#"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
 				</li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="POST" action="../alterar/">
