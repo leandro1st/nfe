@@ -11,16 +11,18 @@ header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetm
 header('Content-Transfer-Encoding: binary');
 header('Cache-Control: must-revalidate');
 header('Pragma: public');
-$query = "SELECT nome, quantidade, id FROM $vendas ORDER BY $nome";
+// $query = "SELECT cod_athos, nome, quantidade, id FROM $vendas ORDER BY $nome"; todos registros
+$query = "SELECT cod_athos, nome, quantidade, id FROM $vendas WHERE $quantidade > 0 ORDER BY $nome"; //Somente vendidos
 $result = mysqli_query($connect, $query);
 $header = array(
+    'CÓD. ATHOS' => 'string',
     'NOME' => 'string',
     'QUANTIDADE' => 'integer',
     'REFERÊNCIA' => 'string',
 );
 $writer = new XLSXWriter();
-$style_header = array('font-style' => 'bold', 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'fill'=>'#30c130', 'widths'=>[78,15,23], 'halign' => 'center');
-$style_cells1 = array(['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'left'], ['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center'], ['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center']);
+$style_header = array('font-style' => 'bold', 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'fill'=>'#30c130', 'widths'=>[23,78,15,38], 'halign' => 'center');
+$style_cells1 = array(['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center'], ['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'left'], ['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center'], ['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center']);
 // $style_cells2 = array('border' => 'left,right,top,bottom', 'border-style' => 'thin', 'halign' => 'center');
 $writer->writeSheetHeader($mes_ano, $header, $style_header);
 
