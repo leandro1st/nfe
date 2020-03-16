@@ -127,6 +127,40 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 			};
 		});
 	</script>
+	<style>
+		/* Accordion */
+
+		.accordion-toggle:after {
+			/* symbol for "opening" panels */
+			font-family: 'Font Awesome 5 Free';
+			content: "\f077";
+			font-weight: 900;
+			float: right;
+		}
+
+		.card-header.collapsed .accordion-toggle:after {
+			/* symbol for "collapsed" panels */
+			font-family: 'Font Awesome 5 Free';
+			content: "\f078";
+			font-weight: 900;
+			float: right;
+		}
+
+		.card-header,
+		.card-header h5:hover {
+			color: #ff7b00;
+			transition: 0.2s;
+		}
+
+		.card-header.collapsed {
+			transition: 1s;
+			color: inherit;
+		}
+
+		.card .card-body {
+			border-top: 2px solid #ff7b00;
+		}
+	</style>
 </head>
 
 <body>

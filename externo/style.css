@@ -175,35 +175,21 @@ a:link {
 	position: relative;
 } 
 
-/* Accordion */
+/* Custom card left border */
 
-.accordion-toggle:after {
-    /* symbol for "opening" panels */
-    font-family: 'Font Awesome 5 Free';
-    content: "\f077";
-    font-weight: 900;
-    float: right;
+.bd-callout {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    width: 303px;
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+    background-color: #eee;
 }
 
-.card-header.collapsed .accordion-toggle:after {
-    /* symbol for "collapsed" panels */
-    font-family: 'Font Awesome 5 Free';
-    content: "\f078";
-    font-weight: 900;
-    float: right;
+.bd-callout-warning {
+    border-left-color: #f0ad4e !important;
 }
 
-.card-header,
-.card-header h5:hover {
-    color: #ff7b00;
-    transition: 0.2s;
-}
-
-.card-header.collapsed {
-    transition: 1s;
-    color: inherit;
-}
-
-.card .card-body {
-    border-top: 2px solid #ff7b00;
-}
+/* Custom card left border */

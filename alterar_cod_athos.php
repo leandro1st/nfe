@@ -58,7 +58,7 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item px-1">
-                    <a class="nav-link" href="#"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
+                    <a class="nav-link" href="./"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
                 <li class="nav-item px-1">
                     <a class="nav-link" href="cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
@@ -67,7 +67,7 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
                     <a class="nav-link" href="excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
                 <li class="nav-item px-1 active">
-                    <a class="nav-link underline" href="alterar_cod_athos.php"><i class="fas fa-archive text-warning" style="font-size: 24px; vertical-align: middle"></i> </a>
+                    <a class="nav-link underline" href="#"><i class="fas fa-archive text-warning" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="POST" action="alterar/">

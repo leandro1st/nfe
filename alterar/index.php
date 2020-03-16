@@ -35,23 +35,43 @@ if (isset($_POST['nome_produto'])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
         <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
         <script>
-            function alterar(nome, id) {
+            function alterar(nome, athos, id) {
                 $.ajax({
                     method: "POST",
                     url: "alterar.php",
                     data: $("#form-alterar").serialize(),
                     success: function(data) {
-                        if ((nome != '' && nome != null) && (id != '' && id != null)) {
+                        if ((nome != '' && nome != null) && (athos != '' && athos != null) && (id != '' && id != null)) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
                             document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
+                            document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
+                            document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
+                        } else if ((nome != '' && nome != null) && (athos != '' && athos != null)) {
+                            alert(data);
+                            document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
+                            document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
+                            document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
+                            document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
+                        } else if ((nome != '' && nome != null) && (id != '' && id != null)) {
+                            alert(data);
+                            document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
+                            document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
+                            document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
+                            document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
+                        } else if ((athos != '' && athos != null) && (id != '' && id != null)) {
+                            alert(data);
+                            document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
                             document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
                         } else if (nome != '' && nome != null) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
                             document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
+                        } else if (athos != '' && athos != null) {
+                            alert(data);
+                            document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
                         } else if (id != '' && id != null) {
                             alert(data);
                             document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
@@ -149,7 +169,7 @@ if (isset($_POST['nome_produto'])) {
             $contador = 0;
             if ($numero > 0) {
             ?>
-                <form id="form-alterar" method="POST">
+                <form id="form-alterar" method="POST" onsubmit="event.preventDefault(); alterar(document.getElementById('nome').value, document.getElementById('athos').value, document.getElementById('id').value); return false;">
                     <div class="card mb-3">
                         <div class="row">
                             <div class="col-md-3" style="padding: 22px 0px 0px 40px">
@@ -169,18 +189,29 @@ if (isset($_POST['nome_produto'])) {
                                         </b>
                                     </p>
                                     <p class="card-text lead">
+                                        Código Athos: <b>
+                                            <font id="mostrar_athos"><?php echo $vetor['cod_athos'] ?></font>
+                                        </b>
+                                    </p>
+                                    <p class="card-text lead">
                                         Referência Athos: <b>
                                             <font id="mostrar_codigo"><?php echo $vetor['id'] ?></font>
                                         </b>
-                                    </p><br>
-                                    <p class="card-text lead">
+                                    </p>
+                                    <p class="card-text text-muted bd-callout bd-callout-warning">
+                                        <small>*Não é necessário preencher todos os campos!</small>
+                                    </p>
+                                    <p class="card-text">
                                         <input type="hidden" name="codigo" class="form-control" value="<?php echo $vetor['codigo'] ?>">
                                         <input type="text" id="nome" name="nome_novo" class="form-control" placeholder="Nome novo" autofocus>
                                     </p>
-                                    <p class="card-text lead">
+                                    <p class="card-text">
+                                        <input type="text" id="athos" name="athos_novo" class="form-control" placeholder="Novo código Athos">
+                                    </p>
+                                    <p class="card-text">
                                         <input type="text" id="id" name="codigo_novo" class="form-control" placeholder="Nova referência Athos">
                                     </p>
-                                    <button type="button" class="btn btn-lg btn-success" style="float: right" onclick="alterar(document.getElementById('nome').value, document.getElementById('id').value)">Alterar</button><br><br>
+                                    <button type="submit" class="btn btn-lg btn-success" style="float: right">Alterar</button><br><br>
                                 </div>
                             </div>
                         </div>
