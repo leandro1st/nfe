@@ -102,6 +102,7 @@ $numero = mysqli_num_rows($procurar);
         <table class="table table-striped table-light table-hover" id="tabela_produtos">
             <thead>
                 <tr align="center" class="table-warning">
+                    <th width="10%">Athos</th>
                     <th>#</th>
                     <th>NOME</th>
                     <th>
@@ -118,6 +119,7 @@ $numero = mysqli_num_rows($procurar);
                     <form id="form-<?php echo $vetor['codigo']; ?>" method="POST">
                         <tr id="linha-<?php echo $vetor['codigo']; ?>">
                             <input type="hidden" class="form-control" name="codigo_produto" value="<?php echo $vetor['codigo']; ?>">
+                            <td class="align-middle" align="center"><b><?php echo $vetor['cod_athos']; ?></b></td>
                             <td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
                             <td class="align-middle" width="75%"><b><?php echo $vetor['nome']; ?></b></td>
                             <td align="center" width="7%">

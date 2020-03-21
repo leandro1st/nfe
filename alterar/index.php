@@ -41,38 +41,46 @@ if (isset($_POST['nome_produto'])) {
                     url: "alterar.php",
                     data: $("#form-alterar").serialize(),
                     success: function(data) {
-                        if ((nome != '' && nome != null) && (athos != '' && athos != null) && (id != '' && id != null)) {
+                        if ((nome.trim() != '' && nome.trim() != null) && (athos.trim() != '' && athos.trim() != null) && (id.trim() != '' && id.trim() != null)) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
+                            document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
+                            document.getElementById('link_titulo').innerHTML =  '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
-                            document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
+                            // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
                             document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
                             document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
-                        } else if ((nome != '' && nome != null) && (athos != '' && athos != null)) {
+                        } else if ((nome.trim() != '' && nome.trim() != null) && (athos.trim() != '' && athos.trim() != null)) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
+                            document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
+                            document.getElementById('link_titulo').innerHTML =  '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
-                            document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
+                            // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
                             document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
-                        } else if ((nome != '' && nome != null) && (id != '' && id != null)) {
+                        } else if ((nome.trim() != '' && nome.trim() != null) && (id.trim() != '' && id.trim() != null)) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
+                            document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
+                            document.getElementById('link_titulo').innerHTML =  '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
-                            document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
+                            // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
                             document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
-                        } else if ((athos != '' && athos != null) && (id != '' && id != null)) {
+                        } else if ((athos.trim() != '' && athos.trim() != null) && (id.trim() != '' && id.trim() != null)) {
                             alert(data);
                             document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
                             document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
-                        } else if (nome != '' && nome != null) {
+                        } else if (nome.trim() != '' && nome.trim() != null) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
+                            document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
+                            document.getElementById('link_titulo').innerHTML =  '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
-                            document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
-                        } else if (athos != '' && athos != null) {
+                            // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
+                        } else if (athos.trim() != '' && athos.trim() != null) {
                             alert(data);
                             document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
-                        } else if (id != '' && id != null) {
+                        } else if (id.trim() != '' && id.trim() != null) {
                             alert(data);
                             document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
                         }
@@ -135,7 +143,7 @@ if (isset($_POST['nome_produto'])) {
             <ol class="breadcrumb" style="background: none; margin: 0;">
                 <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
                 <li class="breadcrumb-item active">
-                    <a href="#" class="none_li"><i class="fas fa-search text-white"></i>
+                    <a id="link_titulo" href="#" class="none_li"><i class="fas fa-search text-white"></i>
                         <?php
                         if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) {
                             echo "Pesquisar";
@@ -152,7 +160,7 @@ if (isset($_POST['nome_produto'])) {
         <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
             <center>
                 <h1>
-                    <font color="white">
+                    <font id="titulo_principal" color="white">
                         <?php if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) { ?>
                             Pesquisar
                         <?php } else if ($numero > 0) {
@@ -183,11 +191,11 @@ if (isset($_POST['nome_produto'])) {
                                     <p class="card-text lead">
                                         Código: <b><?php echo $vetor['codigo'] ?></b>
                                     </p>
-                                    <p class="card-text lead">
+                                    <!-- <p class="card-text lead">
                                         Nome do produto: <b>
                                             <font id="mostrar_nome"><?php echo $vetor['nome'] ?></font>
                                         </b>
-                                    </p>
+                                    </p> -->
                                     <p class="card-text lead">
                                         Código Athos: <b>
                                             <font id="mostrar_athos"><?php echo $vetor['cod_athos'] ?></font>

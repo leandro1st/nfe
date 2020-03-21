@@ -268,7 +268,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 		<table class="table table-striped table-light table-hover" id="tabela_produtos">
 			<thead>
 				<tr align="center" class="table-warning">
-					<th>Código Athos</th>
+					<th width="10%">Athos</th>
 					<th>Referência</th>
 					<th>NOME</th>
 					<th><i class="fas fa-history text-success" style="font-size: 22px" data-toggle="tooltip" data-html="true" title="<b>Última atividade</b>"></i></th>
