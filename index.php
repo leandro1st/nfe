@@ -184,11 +184,10 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 				<li class="nav-item px-1">
 					<a class="nav-link" href="excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
 				</li>
-				<!-- apagar depois -->
-				<li class="nav-item px-1">
+				<!-- Alterar código Athos -->
+				<!-- <li class="nav-item px-1">
 					<a class="nav-link" href="alterar_cod_athos.php"><i class="fas fa-archive text-warning" style="font-size: 24px; vertical-align: middle"></i> </a>
-				</li>
-				<!-- apagar -->
+				</li> -->
 			</ul>
 			<form class="form-inline my-2 my-lg-0" method="POST" action="alterar/">
 				<input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">

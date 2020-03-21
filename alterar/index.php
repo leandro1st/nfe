@@ -189,7 +189,7 @@ if (isset($_POST['nome_produto'])) {
                                         <font id="mostrar_titulo"><?php echo $vetor['nome'] ?></font>
                                     </h5>
                                     <p class="card-text lead">
-                                        Código: <b><?php echo $vetor['codigo'] ?></b>
+                                        Código (banco de dados): <b><?php echo $vetor['codigo'] ?></b>
                                     </p>
                                     <!-- <p class="card-text lead">
                                         Nome do produto: <b>
