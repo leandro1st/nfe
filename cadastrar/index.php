@@ -76,39 +76,66 @@
         </center>
     </div>
     <main class="container">
-        <form id="form_cadastrar" method="POST" action="cadastrar_produto.php" class="needs-validation" novalidate>
-            <div class="form-group">
-                <label for="campo_nome">
-                    <b>Nome do produto:</b>
-                </label>
-                <input type="text" id="campo_nome" name="nome" class="form-control" placeholder="Nome do produto" required autofocus>
-                <div class="invalid-feedback">
-                    Forneça o nome do produto!
+        <form id="form_cadastrar" method="POST" action="cadastrar_produto.php" class="needs-validation" novalidate enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-9">
+                    <div class="form-group">
+                        <label for="campo_nome">
+                            <b>Nome do produto:</b>
+                        </label>
+                        <input type="text" id="campo_nome" name="nome" class="form-control" placeholder="Nome do produto" required autofocus>
+                        <div class="invalid-feedback">
+                            Forneça o nome do produto!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="campo_cod_athos">
+                            <b>Código Athos do produto:</b>
+                        </label>
+                        <input type="text" id="campo_cod_athos" name="codigo_athos" class="form-control" placeholder="Código do produto" required>
+                        <div class="invalid-feedback">
+                            Forneça o código Athos do produto!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="campo_id">
+                            <b>Referência do produto:</b>
+                        </label>
+                        <input type="text" id="campo_id" name="id" class="form-control" placeholder="Referência do produto" required>
+                        <div class="invalid-feedback">
+                            Forneça a referência do produto!
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="campo_cod_athos">
-                    <b>Código Athos do produto:</b>
-                </label>
-                <input type="text" id="campo_cod_athos" name="codigo_athos" class="form-control" placeholder="Código do produto" required>
-                <div class="invalid-feedback">
-                    Forneça o código Athos do produto!
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="campo_id">
-                    <b>Referência do produto:</b>
-                </label>
-                <input type="text" id="campo_id" name="id" class="form-control" placeholder="Referência do produto" required>
-                <div class="invalid-feedback">
-                    Forneça a referência do produto!
+                <div class="col">
+                    <div class="text-center form-group" style="margin: 1.9em 0 0 0">
+                        <!-- <input type="file" id="campo_img" name="imagem" class="btn btn-success" placeholder="Imagem do produto" accept="image/*" style="padding-bottom: 36px"> -->
+                        <label for="campo_img" style="margin: 0">
+                            <figure>
+                                <img id="preview" src="../imagens/upload.png" class="img-thumbnail" title="Selecionar uma imagem" width="200px" height="" style="cursor: pointer; display: none">
+                                <fieldset id="sem_imagem" class="img-thumbnail" style="padding: 40px; cursor: pointer">
+                                <div>
+                                    <i class="fas fa-upload" style="font-size: 40px; color: #92b0b3; margin-bottom: 10px"></i>
+                                </div>    
+                                <div>
+                                    <span class="lead" style="font-size: 18px">Escolher uma imagem</span>
+                                </div>
+                                </fieldset>
+                                <input id="campo_img" name="imagem" type="file" accept="image/*" style="display: none;" onchange="document.getElementById('sem_imagem').style.display = 'none'; document.getElementById('preview').style.display = 'inline'; document.getElementById('preview').src = window.URL.createObjectURL(this.files[0]); document.getElementById('btn_img').style.display = 'none';">
+                                <figcaption class="text-center">
+                                    <span id="nome_imagem"></span>
+                                    <p id="btn_img" class="btn btn-sm btn-warning" style="margin-top: 5px"><i class="fas fa-camera"></i> Adicionar uma foto</p>
+                                </figcaption>
+                            </figure>
+                        </label>
+                    </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-success" style="float: right">Cadastrar</button>
         </form>
-    </main><br><br><br><br><br><br><br><br><br><br><br><br>
+    </main>
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
             <center>
@@ -149,6 +176,14 @@
                 });
             }, false);
         })();
+        // Mostra o nome do arquivo
+        $("#campo_img").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            if (fileName.trim() != "") {
+                document.getElementById("nome_imagem").innerHTML = fileName;
+                document.getElementById("preview").title = fileName;
+            }
+        });
     </script>
 </body>
 

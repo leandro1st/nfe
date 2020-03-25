@@ -12,4 +12,5 @@
 	$nome = "nome";
 	$ultima_mod = "ultima_mod";
 	$ultima_data = "ultima_data";
+	$imagem = "imagem";
 ?>

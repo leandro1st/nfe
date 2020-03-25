@@ -52,6 +52,9 @@ $numero = mysqli_num_rows($procurar);
                     .appendTo(ul);
             };
         });
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 </head>
 
@@ -71,11 +74,11 @@ $numero = mysqli_num_rows($procurar);
                     <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
                 <li class="nav-item px-1">
-					<a class="nav-link" href="../cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
-				</li>
-				<li class="nav-item px-1 active">
-					<a class="nav-link underline" href="#"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
-				</li>
+                    <a class="nav-link" href="../cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+                </li>
+                <li class="nav-item px-1 active">
+                    <a class="nav-link underline" href="#"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="POST" action="../alterar/">
                 <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
@@ -117,7 +120,16 @@ $numero = mysqli_num_rows($procurar);
                     $vetor = mysqli_fetch_array($procurar);
                 ?>
                     <form id="form-<?php echo $vetor['codigo']; ?>" method="POST">
-                        <tr id="linha-<?php echo $vetor['codigo']; ?>">
+                        <?php
+                        $file_explode = explode('.', $vetor['imagem']);
+                        $file_ext = strtolower(end($file_explode));
+                        $extensions = array("jpeg", "jpg", "png", "gif");
+
+                        if (($file_ext == "") || (in_array($file_ext, $extensions) === false)) { ?>
+                            <tr id="linha-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" data-placement="top" title="<i class='fas fa-image' style='font-size: 16px; color: #92b0b3'></i>">
+                        <?php } else { ?>
+                            <tr id="linha-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" data-placement="top" title="<img src='../produtos/<?php echo $vetor['imagem'] ?>' width='130px'><br><span class='text-center'><?php echo $vetor['imagem'] ?></span>">
+                        <?php } ?>
                             <input type="hidden" class="form-control" name="codigo_produto" value="<?php echo $vetor['codigo']; ?>">
                             <td class="align-middle" align="center"><b><?php echo $vetor['cod_athos']; ?></b></td>
                             <td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
@@ -125,7 +137,7 @@ $numero = mysqli_num_rows($procurar);
                             <td align="center" width="7%">
                                 <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" onclick="nomeProduto('<?php echo $vetor['nome']; ?>', '<?php echo $vetor['codigo']; ?>')" style="color: red; font-size: 28px; cursor: pointer;">
                             </td>
-                        </tr>
+                            </tr>
                     </form>
                 <?php } ?>
             </tbody>

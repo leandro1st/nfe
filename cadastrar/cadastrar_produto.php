@@ -7,9 +7,11 @@ if (!isset($_POST['nome'])) {
 } else {
     require('../externo/connect.php');
 
+    date_default_timezone_set('America/Sao_Paulo');
     $n = mb_convert_case(trim($_POST['nome']), MB_CASE_UPPER, 'utf-8');
-    $athos =  mb_convert_case(trim($_POST['codigo_athos']), MB_CASE_UPPER, 'utf-8');
-    $cod =  mb_convert_case(trim($_POST['id']), MB_CASE_UPPER, 'utf-8');
+    $athos = mb_convert_case(trim($_POST['codigo_athos']), MB_CASE_UPPER, 'utf-8');
+    $cod = mb_convert_case(trim($_POST['id']), MB_CASE_UPPER, 'utf-8');
+    $img = $_FILES['imagem']['name'];
 
     $pesquisar = mysqli_query($connect, "SELECT * FROM $vendas WHERE $nome = '$n'");
     $numero_produtos = mysqli_fetch_array($pesquisar);
@@ -139,7 +141,31 @@ if (!isset($_POST['nome'])) {
                         <div class="modal-body">
                             <div class="container">
                                 <?php
-                                $adicionar = mysqli_query($connect, "INSERT INTO $vendas(cod_athos, id, nome, quantidade) VALUES('$athos','$cod', '$n', '0')");
+                                // Adicionando imagem
+                                if (isset($_FILES['imagem'])) {
+                                    $file_size = $_FILES['imagem']['size'];
+                                    $file_tmp = $_FILES['imagem']['tmp_name'];
+                                    $file_type = $_FILES['imagem']['type'];
+                                    $file_explode = explode('.', $img);
+                                    $file_ext = strtolower(end($file_explode));
+                                    $nome_sem_extensao = strtolower($file_explode[0]);
+                                    $nome_novo = $nome_sem_extensao . " " . date("d.m.Y-H.i.s") . "." . $file_ext;
+
+                                    $dir = '../produtos/';
+                                    $extensions = array("jpeg", "jpg", "png", "gif");
+                                    
+                                    if ($file_ext == "") {
+                                        #
+                                        $adicionar = mysqli_query($connect, "INSERT INTO $vendas(cod_athos, id, nome, quantidade, imagem) VALUES('$athos','$cod', '$n', '0', '')");
+                                    }
+                                    else if (in_array($file_ext, $extensions) === false) {
+                                        echo "<span class='text-muted'>Arquivo inválido, somente JPEG, PNG ou GIF são aceitos.</span><br>";
+                                        $adicionar = mysqli_query($connect, "INSERT INTO $vendas(cod_athos, id, nome, quantidade, imagem) VALUES('$athos','$cod', '$n', '0', '')");
+                                    } else {
+                                        move_uploaded_file($file_tmp, $dir . $nome_novo);
+                                        $adicionar = mysqli_query($connect, "INSERT INTO $vendas(cod_athos, id, nome, quantidade, imagem) VALUES('$athos','$cod', '$n', '0', '$nome_novo')");
+                                    }
+                                }
                                 if ($adicionar) { ?>
                                     <div class="row">
                                         <div class="col-4" style="text-align: right; padding: 0px; margin-left: -35px">

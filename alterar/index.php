@@ -5,7 +5,7 @@ if (isset($_POST['nome_produto'])) {
     if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) {
         $numero = 0;
     } else {
-        $procurar = mysqli_query($connect, "SELECT * FROM $vendas WHERE $nome like '%" . $produto . "%' or $id like '%" . $produto . "%'");
+        $procurar = mysqli_query($connect, "SELECT * FROM $vendas WHERE $codigo = '$produto'"); /* WHERE $nome like '%" . $produto . "%' or $id like '%" . $produto . "%' */
         $numero = mysqli_num_rows($procurar);
         $vetor = mysqli_fetch_array($procurar);
     }
@@ -45,7 +45,7 @@ if (isset($_POST['nome_produto'])) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
                             document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
-                            document.getElementById('link_titulo').innerHTML =  '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
+                            document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
                             // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
                             document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
@@ -54,7 +54,7 @@ if (isset($_POST['nome_produto'])) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
                             document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
-                            document.getElementById('link_titulo').innerHTML =  '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
+                            document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
                             // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
                             document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
@@ -62,7 +62,7 @@ if (isset($_POST['nome_produto'])) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
                             document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
-                            document.getElementById('link_titulo').innerHTML =  '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
+                            document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
                             // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
                             document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
@@ -74,7 +74,7 @@ if (isset($_POST['nome_produto'])) {
                             alert(data);
                             document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
                             document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
-                            document.getElementById('link_titulo').innerHTML =  '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
+                            document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
                             document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
                             // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
                         } else if (athos.trim() != '' && athos.trim() != null) {
@@ -181,7 +181,23 @@ if (isset($_POST['nome_produto'])) {
                     <div class="card mb-3">
                         <div class="row">
                             <div class="col-md-3" style="padding: 22px 0px 0px 40px">
-                                <img src="../produtos/<?php echo $vetor['imagem'] ?>" class="rounded card-img" alt="Foto Produto">
+                                <?php
+                                $file_explode = explode('.', $vetor['imagem']);
+                                $file_ext = strtolower(end($file_explode));
+                                $extensions = array("jpeg", "jpg", "png", "gif");
+
+                                if (($file_ext == "") || (in_array($file_ext, $extensions) === false)) { ?>
+                                    <fieldset id="sem_imagem" class="img-thumbnail text-center" style="padding: 40px; background-color: #575759">
+                                        <div>
+                                            <i class="fas fa-image" style="font-size: 40px; color: white; margin-bottom: 10px"></i>
+                                        </div>
+                                        <div style="margin: 0 -40px 0 -40px">
+                                            <span class="font-weight-bold" style="font-size: 14px; color: white">IMAGEM NÃO CADASTRADA</span>
+                                        </div>
+                                    </fieldset>
+                                <?php } else { ?>
+                                    <img src="../produtos/<?php echo $vetor['imagem'] ?>" class="rounded card-img" alt="Foto Produto">
+                                <?php } ?>
                             </div>
                             <div class="col-md-9">
                                 <div class="card-body">

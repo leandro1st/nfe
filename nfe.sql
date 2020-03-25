@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Mar-2020 às 18:31
+-- Generation Time: 25-Mar-2020 às 16:07
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -63,7 +63,7 @@ CREATE TABLE `vendas` (
 INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem`, `ultima_mod`) VALUES
 (1, '311', '2502', 'ARROZ GUIN LONGO 1KG', 0, 'guin_longo_1kg.jpg', '0000-00-00 00:00:00'),
 (2, '9151', '340', 'ARROZ MOMIJI CURTO 1KG', 0, 'momiji_curto_1kg.jpg', '0000-00-00 00:00:00'),
-(3, '131/151/8263', '343', 'ARROZ MOMIJI LONGO 1KG', 0, 'momiji_longo_1kg.jpg', '0000-00-00 00:00:00'),
+(3, '131/151/8263', '343', 'ARROZ MOMIJI LONGO 1KG', 1, 'momiji_longo_1kg.jpg', '2020-03-23 14:45:25'),
 (4, '8003', '1748', 'BALA GENGIBRE, MEL E PRÃ“POLIS 55G', 0, 'bala_gengibre_mel.jpg', '0000-00-00 00:00:00'),
 (5, 'MOB 320', '1524', 'BARCO ISOPOR C/ TAMPA M', 0, 'barco_isopor.png', '0000-00-00 00:00:00'),
 (6, '24243', '2718', 'BISC BOLINHO YOKOMIZO 270G', 0, 'yokomizo_leite.jpg', '0000-00-00 00:00:00'),
@@ -85,7 +85,7 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (23, 'CHA0002', '465', 'CHÃ DE GINSENG C/100 SACHES 300G', 0, 'ginseng_100.jpg', '0000-00-00 00:00:00'),
 (24, 'CHA0002', '1269', 'CHA DE GINSENG C/50 SACHES 150G+', 0, 'ginseng_50.jpg', '0000-00-00 00:00:00'),
 (26, '58', '94', 'CHÃ VERDE YAMAMOTOYAMA 200G', 0, 'chaverde_yamamotoyama.jpg', '0000-00-00 00:00:00'),
-(27, '196', '196', 'CHAMOJI (COLHER PARA ARROZ)', 0, 'chamoji.jpg', '0000-00-00 00:00:00'),
+(27, '933/1383', '196', 'CHAMOJI (COLHER PARA ARROZ)', 0, 'chamoji.jpg', '0000-00-00 00:00:00'),
 (28, '11113', '1867', 'CHICLETE FUSEN GUM LARANJA ORANGE+', 0, 'fusen_laranja.jpg', '0000-00-00 00:00:00'),
 (29, '11103', '249', 'CHICLETE FUSEN GUM MELÃƒO MELON+', 0, 'fusen_melao.jpg', '0000-00-00 00:00:00'),
 (30, '11083', '251', 'CHICLETE FUSEN GUM MORANGO ICHIGO+', 0, 'fusen_morango.jpg', '0000-00-00 00:00:00'),
@@ -127,7 +127,7 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (68, '30013', '2213', 'FARINHA PANKO ALFA 200G', 0, 'panko_200g.jpg', '0000-00-00 00:00:00'),
 (69, '500390', '3418', 'FILTRO BOLA CHA INOX', 0, 'filtro_cha.jpg', '0000-00-00 00:00:00'),
 (70, '7183', '541', 'FURIKAKE SANKAKU LEGUMES', 0, 'furikake_legumes.jpg', '0000-00-00 00:00:00'),
-(71, '7213', '542', 'FURIKAKE SANKAKU PEIXES', 0, 'furikake_peixe.jpg', '0000-00-00 00:00:00'),
+(71, '7213', '542', 'FURIKAKE SANKAKU KOZAKANA 36G', 1, 'furikake_peixe.jpg', '2020-03-23 14:45:10'),
 (72, '7223', '532', 'FURIKAKE SANKAKU SHAKE', 0, 'furikake_sake.jpg', '0000-00-00 00:00:00'),
 (73, '30053', '2031', 'GELATINA ALGA FRUTAS SORT C/ COCO 280G', 0, 'gelatina_sortido.jpg', '0000-00-00 00:00:00'),
 (74, '30043', '2030', 'GELATINA DE ALGA  LICHIA C/ COCO 280G', 0, 'gelatina_coco.jpg', '0000-00-00 00:00:00'),
@@ -135,12 +135,12 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (76, '11383', '21', 'GERGELIM BRANCO TORRADO 100G', 0, 'gergelim_branco_torrado.jpg', '0000-00-00 00:00:00'),
 (77, '19493', '27', 'GERGELIM PRETO TORRADO 100G', 0, 'gergelim_preto_torrado.jpg', '0000-00-00 00:00:00'),
 (78, 'CHA0002/CHA0088', '1270', 'GINSENG UNIT (DESINCHA KIT = 73%)', 0, 'ginseng.jpg', '0000-00-00 00:00:00'),
-(79, '704', '211', 'GUINOMI (COPO PARA SAQUE) 5,5D X 5', 0, 'guinomi.jpg', '0000-00-00 00:00:00'),
+(79, '704', '211', 'GUINOMI (COPO PARA SAQUE) 5,5D X 5', 12, 'guinomi.jpg', '2020-03-23 16:18:36'),
 (80, '3043', '1106', 'HARUSSAME REDE ROSA 200G+', 0, 'harussame.jpg', '0000-00-00 00:00:00'),
 (81, '925', '206', 'HASHI COLORIDO 925', 0, 'hashi_colorido.jpg', '0000-00-00 00:00:00'),
 (82, '25963/24403', '2299', 'HASHI DE BAMBU C/50', 0, 'hashi_bambu.jpg', '0000-00-00 00:00:00'),
 (83, 'HAS0001/101100', '1134', 'HASHI DE MADEIRA C/40', 0, 'hashi_madeira.jpg', '0000-00-00 00:00:00'),
-(84, '00002300/953', '292', 'HONDASHI 60G', 0, 'hondashi.jpg', '0000-00-00 00:00:00'),
+(84, '00002300/953', '292', 'HONDASHI 60G', 2, 'hondashi.jpg', '2020-03-23 14:49:05'),
 (85, '16633', '3289', 'KARE GOLDEN CURRY FRACO 220 GR', 0, 'golden_fraco.jpg', '0000-00-00 00:00:00'),
 (86, '3563', '3222', 'KARE GOLDEN CURRY MÃ‰DIO 220 GR', 0, 'golden_medio.jpg', '0000-00-00 00:00:00'),
 (87, '990300', '3580', 'KIT HASHI PREMIUM 21CM C/ 20 SHIKI', 0, 'kit_hashi_premium.jpg', '0000-00-00 00:00:00'),
@@ -148,15 +148,15 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (89, 'BIS00136', '3856', 'KOALA CHOCO BRANCO', 0, 'koala_chocolate_branco.jpg', '0000-00-00 00:00:00'),
 (91, 'BIS00134', '3855', 'KOALA MORANGO', 0, 'koala_morango.jpg', '0000-00-00 00:00:00'),
 (92, '1497', '3643', 'LAMEM SOON VEGGIE RAMYUN 112G', 0, 'lamen_veggie.jpg', '0000-00-00 00:00:00'),
-(93, 'LAM0013', '420', 'LAMEN YUKGUEJANG NONGSHIM 86G', 0, 'lamen_yukguejang.jpg', '0000-00-00 00:00:00'),
+(93, 'LAM0011/400LAM00117/18', '402', 'LAMEN YUKGUEJANG NONGSHIM 86G', 1, 'lamen_yukguejang.jpg', '2020-03-23 14:32:48'),
 (94, '4962', '3778', 'LAMEN COREANO SABOR CARNE & VEGETAIS PICANTE SAMYANG', 0, 'lamen_samyang.jpg', '0000-00-00 00:00:00'),
 (95, '3006', '3779', 'LAMEN COREANO SUPER PICANTE FRANGO E QUEIJO CREMOSO CARBONARA - 130G', 0, 'lamen_carbonara.jpg', '0000-00-00 00:00:00'),
-(96, '119', '3878', 'MAC INST SHRIMP CAMARÃƒO HOT COPO 67G', 0, 'lamen_camarao.jpg', '0000-00-00 00:00:00'),
+(96, '119', '3878', 'MAC INST SHRIMP CAMARÃƒO HOT COPO 67G', 3, 'lamen_camarao.jpg', '2020-03-23 15:29:11'),
 (97, 'LAM0056/7', '1994', 'MAC.INST.NEOGURI HOT 120GR PICANTE', 0, 'lamen_neoguri_hot.jpg', '0000-00-00 00:00:00'),
 (98, 'LAM0004T', '459', 'MAC.INST.NEOGURI MILD 120GR', 0, 'lamen_neoguri_mild.jpg', '0000-00-00 00:00:00'),
-(99, 'LAM0013/1965', '420', 'MAC.INST.SHIN CUP 68G', 0, 'lamen_shin_cup.jpg', '0000-00-00 00:00:00'),
-(100, '742', '3551', 'MACARRÃƒO INST NEOGURI COPO 62GR', 0, 'lamen_neoguri_cup.jpg', '0000-00-00 00:00:00'),
-(101, '8000LAM0010/17', '2308', 'MACARRAO INST.KIMCHI CUP 86GR', 0, 'lamen_kimchi_cup.jpg', '0000-00-00 00:00:00'),
+(99, 'LAM0013/1965', '420', 'MAC.INST.SHIN CUP 68G', 5, 'lamen_shin_cup.jpg', '2020-03-23 15:39:09'),
+(100, '742', '3551', 'MACARRÃƒO INST NEOGURI COPO 62GR', 2, 'lamen_neoguri_cup.jpg', '2020-03-23 15:45:31'),
+(101, '8000LAM0010/17', '2308', 'MACARRAO INST.KIMCHI CUP 86GR', 1, 'lamen_kimchi_cup.jpg', '2020-03-23 14:30:56'),
 (102, '2723', '103', 'MACARRÃƒO YAKISSOBA ALFA 500G', 0, 'yakisoba_alfa.jpg', '0000-00-00 00:00:00'),
 (103, '4711931120014', '234', 'MARSHMALLOW BLUEBERRY 100G', 0, 'marshmallow_blueberry.jpeg', '0000-00-00 00:00:00'),
 (104, '1988', '1988', 'MARSHMALLOW CHOCOLATE 100G+', 0, 'marshmallow_chocolate.jpg', '0000-00-00 00:00:00'),
@@ -164,8 +164,8 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (106, '087', '3751', 'MEL FLORADA EUCALIPTO BISNAGA 210G', 0, 'mel_eucalipto.png', '0000-00-00 00:00:00'),
 (107, '077', '3752', 'MEL FLORADA LARANJEIRA BISNAGA 210G', 0, 'mel_laranjeira.jpg', '0000-00-00 00:00:00'),
 (108, '1213', '1', 'MIRIM SAQUE AZUMA 500ML', 0, 'mirim_azuma.jpg', '0000-00-00 00:00:00'),
-(109, '3540/673', '348', 'MISSO AKA SAKURA 1 KG', 0, 'misso_sakura_aka_1kg.jpg', '0000-00-00 00:00:00'),
-(110, '3541/683', '560', 'MISSO AKA SAKURA 500G', 0, 'misso_aka_sakura_500g.jpg', '0000-00-00 00:00:00'),
+(109, '3540/673', '348', 'MISSO AKA SAKURA 1 KG', 1, 'misso_sakura_aka_1kg.jpg', '2020-03-23 14:35:51'),
+(110, '3541/683', '560', 'MISSO AKA SAKURA 500G', 2, 'misso_aka_sakura_500g.jpg', '2020-03-23 15:17:27'),
 (111, '000005', '3492', 'MISSO CASEIRO NIHON NO AJI 200G', 0, 'misso_caseiro_200g.png', '0000-00-00 00:00:00'),
 (112, '000004', '3490', 'MISSO CASEIRO NIHON NO AJI 400G', 0, 'misso_caseiro_400g.png', '0000-00-00 00:00:00'),
 (113, '000003', '3491', 'MISSO CASEIRO NIHON NO AJI 900G', 0, 'misso_caseiro_900g.png', '0000-00-00 00:00:00'),
@@ -187,7 +187,7 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (129, 'ALG0051', '3494', 'NORI ALGA SUSHI  50FLS 140GR+', 0, 'nori_50fls.jpg', '0000-00-00 00:00:00'),
 (130, 'ALG0051', '3494', 'NORI ALGA SUSHI  50FLS 140GR+ C/02', 0, 'nori_50fls.jpg', '0000-00-00 00:00:00'),
 (131, 'ALG0051', '3494', 'NORI ALGA SUSHI  50FLS 140GR+ C/03', 0, 'nori_50fls.jpg', '0000-00-00 00:00:00'),
-(132, '2502/2000ALG0050', '3354', 'NORI ALGA SUSHI 10FLS 28 GR', 0, 'nori_10fls.jpg', '0000-00-00 00:00:00'),
+(132, '2502/2000ALG0050', '3354', 'NORI ALGA SUSHI 10FLS 28 GR', 4, 'nori_10fls.jpg', '2020-03-23 16:06:02'),
 (133, '2000ALG0050', '3354', 'NORI ALGA SUSHI 10FLS 28GR C/02', 0, 'nori_10fls.jpg', '0000-00-00 00:00:00'),
 (134, '2000ALG0050', '3354', 'NORI ALGA SUSHI 10FLS 28GR C/03', 0, 'nori_10fls.jpg', '0000-00-00 00:00:00'),
 (136, '1563', '2506', 'NOSHIGAMI PAPEL P/ EMBRULHO MISSA C/01', 0, 'noshigami.jpg', '0000-00-00 00:00:00'),
@@ -195,8 +195,8 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (138, '1563', 'â€“', 'NOSHIGAMI PAPEL P/ EMBRULHO MISSA C/30', 0, 'noshigami.jpg', '0000-00-00 00:00:00'),
 (139, '1563', '2518', 'NOSHIGAMI PAPEL P/ EMBRULHO MISSA C/50//LANÃ‡AR COMO NOSHIGAMI MISSA 50 FL', 0, 'noshigami.jpg', '0000-00-00 00:00:00'),
 (140, '793', '65', 'OKOSHI HIKAGE 100 GR', 0, 'okoshi_100g.jpg', '0000-00-00 00:00:00'),
-(141, '3610/4953', '577', 'Ã“LEO DE GERGELIM KENKO 100ML', 0, 'oleo_kenko_100ml.jpg', '0000-00-00 00:00:00'),
-(142, '926/1483', '193', 'ONIGUIRI KATA', 0, 'oniguiri_kata.png', '0000-00-00 00:00:00'),
+(141, '3610/4953', '577', 'OLEO DE GERGELIM KENKO 100ML', 0, 'oleo_kenko_100ml.jpg', '0000-00-00 00:00:00'),
+(142, '926/1483', '193', 'ONIGUIRI KATA', 1, 'oniguiri_kata.png', '2020-03-23 14:43:33'),
 (143, '936/4343', '1544', 'OWAN S/T C/DES. VERMELHO', 0, 'owan_vermelho.jpg', '0000-00-00 00:00:00'),
 (144, '401080', '2571', 'PALITO GUARDA CHUVA', 0, 'palito_guarda_chuva.jpg', '0000-00-00 00:00:00'),
 (145, 'BIS0032T', '3863', 'BISC PEPERO AMENDOIM C/PRETZEL 32G', 0, 'pepero_amendoim.jpg', '0000-00-00 00:00:00'),
@@ -234,13 +234,13 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (180, '1658', '2862', 'SNACK ALGA MARINHA (NATURAL) 10G+', 0, 'snack_natural.jpg', '0000-00-00 00:00:00'),
 (181, '1660', '3202', 'SNACK ALGA MARINHA (ORIGINAL) 10G+', 0, 'snack_original.jpg', '0000-00-00 00:00:00'),
 (182, '2043', '124', 'SOBA BAURU MEZZANI 500 GR', 0, 'soba_mezzani.jpg', '0000-00-00 00:00:00'),
-(183, '1406', '2940', 'SOJU CHUM CHURUM 360,0 ML TAMPA VERDE  17,5%', 0, 'soju_tampa_verde.jpg', '0000-00-00 00:00:00'),
-(184, '4996', '3861', 'SOJU CHUM CHURUM BLUEBERRY 360ML', 0, 'soju_blueberry.jpg', '0000-00-00 00:00:00'),
-(185, '1406/2302', '3802', 'SOJU CHUM CHURUM UVA 360ML', 0, 'soju_uva.jpg', '0000-00-00 00:00:00'),
+(183, '1406', '2940', 'SOJU CHUM CHURUM 360,0 ML TAMPA VERDE  17,5%', 6, 'soju_tampa_verde.jpg', '2020-03-23 16:14:58'),
+(184, '4996', '3861', 'SOJU CHUM CHURUM BLUEBERRY 360ML', 3, 'soju_blueberry.jpg', '2020-03-23 16:15:47'),
+(185, '1406/2302', '3802', 'SOJU CHUM CHURUM UVA 360ML', 1, 'soju_uva.jpg', '2020-03-23 15:38:54'),
 (186, 'SOJU0001T', '2769', 'SOJU JINRO CHAMISUL CLASSIC 360ML TAMPA VERMELHO 20,1% HANARO', 0, 'soju_tampa_vermelha.jpg', '0000-00-00 00:00:00'),
 (187, '927/2413', '35', 'SUSHI KATA (NIGUIRIZUSHI)', 0, 'niguirizushi_kata.png', '0000-00-00 00:00:00'),
 (188, '2583', '3', 'TEMPERO PARA SUSHI AZUMA 750ML', 0, 'vinagra_azuma.jpg', '0000-00-00 00:00:00'),
-(189, '118/LAM0085T', '2889', 'TEMPURA UDON CUP 62G', 0, 'tempura_udon_cup.jpeg', '0000-00-00 00:00:00'),
+(189, '118/LAM0085T', '2889', 'TEMPURA UDON CUP 62G', 2, 'tempura_udon_cup.jpeg', '2020-03-23 15:45:51'),
 (190, '2380', '3128', 'TSUKE TSUKE', 0, 'tsuke_tsuke.jpg', '0000-00-00 00:00:00'),
 (191, '2483', '31', 'UDON ASSAI 500GR ', 0, 'udon_assai.jpg', '0000-00-00 00:00:00'),
 (192, '8173', '131', 'UMEBOSHI CASA FORTE', 0, 'umeboshi_200g.jpg', '0000-00-00 00:00:00'),
@@ -248,7 +248,7 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (194, '9004', '2853', 'VINAGRE DE CALDO DE CANA-DE-ACUCAR ORGÃ‚NICO 500ML', 0, 'vinagre_cana_organico.jpg', '0000-00-00 00:00:00'),
 (195, '9002', '109', 'VINAGRE DE MAÃ‡A ORGÃ‚NICO 500ML SÃƒO FRANSCISCO', 0, 'vinagra_maca_organico.png', '0000-00-00 00:00:00'),
 (196, '3493', '1997', 'WAKAME SEIWA 30G', 0, 'wakame_seiwa_30.jpg', '0000-00-00 00:00:00'),
-(197, '17893/24403/100700', '1627', 'WARIBASHI BAMBU 01 PAR', 0, 'waribashi_1.jpg', '0000-00-00 00:00:00'),
+(197, '17893/24403/100700', '1627', 'WARIBASHI BAMBU 01 PAR', 17, 'waribashi_1.jpg', '2020-03-23 16:01:27'),
 (198, '17893/24403/100700', '1627', 'WARIBASHI BAMBU 01 PAR C/03', 0, 'waribashi_1.jpg', '0000-00-00 00:00:00'),
 (199, '17893/24403/100700', '1627', 'WARIBASHI BAMBU 01 PAR C/06', 0, 'waribashi_1.jpg', '0000-00-00 00:00:00'),
 (200, '20973', '1092', 'WASABI EM PASTA GLOBO', 0, 'wasabi_globo.jpg', '0000-00-00 00:00:00'),
@@ -264,12 +264,12 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (214, '1038', '1038', 'BALA JELLY SWEET 500G', 0, 'sweet_500.jpg', '0000-00-00 00:00:00'),
 (216, '00BIS00167/1809', '2417', 'BISC POCKY GLICO BLUEBERRY', 0, 'pocky_blueberry.jpeg', '0000-00-00 00:00:00'),
 (218, 'COD ATHOS 3825', '3825', 'BISC POCKY THIN', 0, 'pocky_thin.jpg', '0000-00-00 00:00:00'),
-(219, '1710', '1710', 'CHINELO JUNCO CJ-17 39/40', 0, 'chinelo_junco_40.jpg', '0000-00-00 00:00:00'),
+(219, 'CJ-17', '1710', 'CHINELO JUNCO CJ-17 39/40', 0, 'chinelo_junco_40.jpg', '0000-00-00 00:00:00'),
 (220, '2494', '2494', 'MAC INST NEOGURI MILD 100', 0, 'lamen_neoguri_mild.jpg', '0000-00-00 00:00:00'),
-(221, '127', '127', 'OWAN S/T C/DES PRETO', 0, 'owan_preto.jpg', '0000-00-00 00:00:00'),
-(222, '4995', '3906', 'SOJU CHUM CHURUM MORANGO 360 ML', 0, '', '0000-00-00 00:00:00'),
+(221, '127', '127', 'OWAN S/T C/DES PRETO', 2, 'owan_preto.jpg', '2020-03-23 15:17:57'),
+(222, '4995', '3906', 'SOJU CHUM CHURUM MORANGO 360 ML', 3, '', '2020-03-23 15:38:31'),
 (223, '69', '69', 'KAREKO CONDIMENTO INDIA 57G', 0, '', '0000-00-00 00:00:00'),
-(224, '2708', '2708', 'GERGELIM BRANCO TORRADO CASA FORTE 500G', 0, '', '0000-00-00 00:00:00'),
+(224, '22873', '2708', 'GERGELIM BRANCO TORRADO CASA FORTE 500G', 0, '', '0000-00-00 00:00:00'),
 (225, '2216', '3907', 'SOJU SODA TOK UVA 355 ML', 0, '', '0000-00-00 00:00:00'),
 (226, '2753', '2753', 'BISC CHOCO KIT 36G', 0, '', '0000-00-00 00:00:00'),
 (227, '2754', '2754', 'BISC CHOCO PICK 45G', 0, '', '0000-00-00 00:00:00'),
@@ -280,12 +280,13 @@ INSERT INTO `vendas` (`codigo`, `id`, `cod_athos`, `nome`, `quantidade`, `imagem
 (232, 'BIS00136T', '3841', 'BISC KOALA CHOCOLATE 37G', 0, '', '0000-00-00 00:00:00'),
 (233, '7923', '1468', 'MUPY MISTO 200ML', 0, '', '0000-00-00 00:00:00'),
 (234, '63500', '346', 'SHOYU TRADICIONAL  SAKURA 1 L', 0, '', '0000-00-00 00:00:00'),
-(235, '311', '344', 'ARROZ GUIN 5 KG', 0, '', '0000-00-00 00:00:00'),
+(235, '311', '344', 'ARROZ GUIN 5 KG', 1, '', '2020-03-23 14:36:03'),
 (236, 'COD ATHOS 407 //60BIS00111T/BIS00111', '407', 'BISC CHOCO PIE 168G LOTTE', 0, '', '0000-00-00 00:00:00'),
 (237, '2213', '3987', 'SOJU CHUM CHURUM MAÃ‡A 360 ML', 0, '', '0000-00-00 00:00:00'),
 (238, '417/600LAM0003T', '417', 'MAC INST NEOGURI 100G', 0, '', '0000-00-00 00:00:00'),
 (239, '3744/5603/21177', '3744', 'SHOYU HINOMOTO TRADICIONAL 500ML', 0, '', '0000-00-00 00:00:00'),
-(240, '1560', '1560', 'CHOCOPIE 30G', 0, '', '0000-00-00 00:00:00');
+(240, '1560', '1560', 'BISC. CHOCOPIE 30G', 0, '', '0000-00-00 00:00:00'),
+(241, '21134', '256', 'SHOYU HINOMOTO 1 L', 1, '', '2020-03-23 14:35:23');
 
 --
 -- Indexes for dumped tables
@@ -317,7 +318,7 @@ ALTER TABLE `observacao`
 -- AUTO_INCREMENT for table `vendas`
 --
 ALTER TABLE `vendas`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=242;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

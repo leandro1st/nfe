@@ -17,21 +17,28 @@ $result = mysqli_query($connect, $query);
 $header = array(
     'CÓD. ATHOS' => 'string',
     'NOME' => 'string',
-    'QUANTIDADE' => 'integer',
+    'QTDE' => 'integer',
     'REFERÊNCIA' => 'string',
 );
 $writer = new XLSXWriter();
-$style_header = array('font-style' => 'bold', 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'fill'=>'#30c130', 'widths'=>[23,78,15,38], 'halign' => 'center');
-$style_cells1 = array(['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center'], ['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'left'], ['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center'], ['border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center']);
-// $style_cells2 = array('border' => 'left,right,top,bottom', 'border-style' => 'thin', 'halign' => 'center');
+$style_header = array('font-size'=>12, 'font-style' => 'bold', 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'fill'=>'#30c130', 'widths'=>[23,78,8,38], 'halign' => 'center');
+$style_cells1 = array(['font-size'=>12, 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center'], ['font-size'=>12, 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'left'], ['font-size'=>12, 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center'], ['font-size'=>12, 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'height'=>14, 'halign' => 'center']);
+$style_cells2 = array(['font-size'=>12, 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'fill'=>'#cfcfd2', 'height'=>14, 'halign' => 'center'], ['font-size'=>12, 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'fill'=>'#cfcfd2', 'height'=>14, 'halign' => 'left'], ['font-size'=>12, 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'fill'=>'#cfcfd2', 'height'=>14, 'halign' => 'center'], ['font-size'=>12, 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'fill'=>'#cfcfd2', 'height'=>14, 'halign' => 'center']);
+// $style_cells2 = array('font-size'=>12, 'border' => 'left,right,top,bottom', 'border-style' => 'thin', 'halign' => 'center');
 $writer->writeSheetHeader($mes_ano, $header, $style_header);
 
 $array = array();
+$x = 0;
 while ($row = mysqli_fetch_row($result)) {
     for ($i = 0; $i < mysqli_num_fields($result); $i++) {
         $array[$i] = $row[$i];
     }
-    $writer->writeSheetRow($mes_ano, $array, $style_cells1);
+    if ($x % 2 == 0) {
+        $writer->writeSheetRow($mes_ano, $array, $style_cells1);
+    } else {
+        $writer->writeSheetRow($mes_ano, $array, $style_cells2);
+    }
+    $x++;
 };
 $writer->writeToStdOut();
 exit(0);
