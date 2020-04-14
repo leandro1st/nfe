@@ -271,6 +271,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 		<table class="table table-striped table-light table-hover" id="tabela_produtos">
 			<thead>
 				<tr align="center" class="table-warning">
+					<th class="theader_top" width="">#</th>
 					<th class="theader_top" width="10%">Athos</th>
 					<th class="theader_top">Referência</th>
 					<th class="theader_top">NOME</th>
@@ -297,6 +298,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 					<form id="form-<?php echo $vetor['codigo']; ?>" method="POST">
 						<tr>
 							<input type="hidden" class="form-control" name="cod" value="<?php echo $vetor['codigo']; ?>">
+							<td class="align-middle" align="center"><b><?php echo $vetor['codigo']; ?></b></td>
 							<td class="align-middle" align="center"><b><?php echo $vetor['cod_athos']; ?></b></td>
 							<td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
 							<td class="align-middle" width="70%">

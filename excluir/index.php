@@ -106,7 +106,7 @@ $numero = mysqli_num_rows($procurar);
             <thead>
                 <tr align="center" class="table-warning">
                     <th width="10%">Athos</th>
-                    <th>#</th>
+                    <th>Referência</th>
                     <th>NOME</th>
                     <th>
                         <i class="far fa-trash-alt" style="color: red; font-size: 22px;"></i>
