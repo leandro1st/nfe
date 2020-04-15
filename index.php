@@ -117,6 +117,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 				minLength: 1,
 				select: function(event, ui) {
 					$('#nome_produto').val(ui.item.value);
+					$('#form_pesquisa').submit();
 				},
 				appendTo: "#div_autocomplete"
 			}).data('ui-autocomplete')._renderItem = function(ul, item) {
@@ -193,7 +194,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 					<a class="nav-link" href="alterar_cod_athos.php"><i class="fas fa-archive text-warning" style="font-size: 24px; vertical-align: middle"></i> </a>
 				</li> -->
 			</ul>
-			<form class="form-inline my-2 my-lg-0" method="POST" action="alterar/">
+			<form id="form_pesquisa" class="form-inline my-2 my-lg-0" method="POST" action="alterar/">
 				<input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
 				<div id="div_autocomplete">
 				</div>

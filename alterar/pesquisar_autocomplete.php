@@ -3,9 +3,20 @@
 if (isset($_GET["term"])) {
     $connect = new PDO("mysql:host=localhost; dbname=nfe", "root", "");
 
-    $term = mb_convert_case(trim($_GET['term']), MB_CASE_UPPER, 'utf-8');
+    $term_post = mb_convert_case(trim($_GET['term']), MB_CASE_UPPER, 'utf-8');
 
-    $query = "SELECT * FROM vendas WHERE nome LIKE '%" . $term . "%' or cod_athos LIKE '%" . $term . "%' or id LIKE '%" . $term . "%' ORDER BY nome ASC";
+    // dividindo $term_post em partes e criando termos de pesquisa para cada pedaço de string e armazenando-os numa string
+    $searchTerms = explode(' ', $term_post);
+    $searchTermBits = array();
+    foreach ($searchTerms as $term) {
+        $term = trim($term);
+        if (!empty($term)) {
+            $searchTermBits[] = "(codigo LIKE '%$term%' or nome LIKE '%$term%' or cod_athos LIKE '%$term%' or id LIKE '%$term%')";
+        }
+    }
+
+    // query, juntando as strings armazenadas dentro do array $searchTermBits
+    $query = "SELECT * FROM vendas WHERE " . implode(" AND ", $searchTermBits) . " ORDER BY nome ASC";
 
     $statement = $connect->prepare($query);
 
@@ -20,7 +31,7 @@ if (isset($_GET["term"])) {
         foreach ($result as $row) {
             $temp_array = array();
             $temp_array['value'] = $row['codigo'];
-            
+
             // Verificando se imagem existe
             $file_explode = explode('.', $row['imagem']);
             $file_ext = strtolower(end($file_explode));
@@ -39,5 +50,3 @@ if (isset($_GET["term"])) {
     }
     echo json_encode($array_produto);
 }
-
-?>
