@@ -7,6 +7,9 @@ $vetor_maior_id = mysqli_fetch_array($pesquisar_maior_id);
 
 $pesquisar_ultima_data = mysqli_query($connect, "SELECT * FROM $observacao");
 $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
+
+$pesquisar_ultima_alteracao = mysqli_query($connect, "SELECT nome, ultima_mod FROM $vendas ORDER BY ultima_mod DESC limit 1");
+$vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 ?>
 <!DOCTYPE html>
 <html>
@@ -161,6 +164,7 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 		.card .card-body {
 			border-top: 2px solid #ff7b00;
 		}
+
 		.theader_top {
 			position: sticky;
 			top: 60px;
@@ -202,6 +206,9 @@ $vetor_ultima_data = mysqli_fetch_array($pesquisar_ultima_data);
 			</form>
 		</div>
 	</nav>
+	<p class="lead text-white" style="position: absolute; margin: 15px 0 0 25px; font-size: 18px">
+		<b>Última modificação: </b><?php echo $vetor_ultima_alteracao['nome'] ?><small class="text-muted"> (<?php echo date("d/m/Y H:i:s", strtotime($vetor_ultima_alteracao['ultima_mod'])) ?>)</small>
+	</p>
 	<div class="jumbotron" style="background-image: url('imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
 		<center>
 			<h1 style="color: white">
