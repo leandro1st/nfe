@@ -58,7 +58,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 			var cont = parseInt(contador);
 			$.ajax({
 				type: "POST",
-				url: "cadastrar/remover1.php",
+				url: "excluir/remover1.php",
 				cache: false,
 				data: $("#form-" + id + '').serialize(),
 				success: function(data) {
@@ -89,7 +89,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 		// function excluirTudo(maior_id) {
 		// 	$.ajax({
 		// 		method: 'POST',
-		// 		url: 'cadastrar/zerar.php',
+		// 		url: 'excluir/zerar.php',
 		// 		data: $('#form_excluirTudo').serialize(),
 		// 		success: function(data) {
 		// 			// for (var i = 1; i <= maior_id; i++) {
@@ -116,7 +116,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 
 		$(document).ready(function() {
 			$('#nome_produto').autocomplete({
-				source: "alterar/pesquisar_autocomplete_index.php",
+				source: "pesquisar/pesquisar_autocomplete_index.php",
 				minLength: 1,
 				select: function(event, ui) {
 					$('#nome_produto').val(ui.item.value);
@@ -207,7 +207,12 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 		</div>
 	</nav>
 	<p class="lead text-white" style="position: absolute; margin: 15px 0 0 25px; font-size: 18px">
-		<b>Última modificação: </b><?php echo $vetor_ultima_alteracao['nome'] ?><small class="text-muted"> (<?php echo date("d/m/Y H:i:s", strtotime($vetor_ultima_alteracao['ultima_mod'])) ?>)</small>
+		<b>Última modificação:</b>
+		<?php if ($vetor_ultima_alteracao['ultima_mod'] != '0000-00-00 00:00:00') {
+			echo $vetor_ultima_alteracao['nome'] ?><small class="text-muted"> (<?php echo date("d/m/Y H:i:s", strtotime($vetor_ultima_alteracao['ultima_mod'])) ?>)</small>
+		<?php } else {
+			echo "–";
+		} ?>
 	</p>
 	<div class="jumbotron" style="background-image: url('imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
 		<center>
@@ -260,13 +265,14 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 				<div class="card">
 					<div class="card-header collapsed" id="heading_1" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" aria-controls="collapse_1" style="cursor: pointer;">
 						<h5 class="accordion-toggle" style="margin: 0px">
-							<span class="text-danger">Feito até o dia <?php echo date("d/m/Y", strtotime($vetor_ultima_data['ultima_data'])) ?></span>
+							<!-- Operador ternário -->
+							<span class="text-danger">NF-e feita até o dia <?php echo $vetor_ultima_data['ultima_data'] != "0000-00-00" ? date("d/m/Y", strtotime($vetor_ultima_data['ultima_data'])) : "–" ?></span>
 						</h5>
 					</div>
 					<div id="collapse_1" class="collapse" aria-labelledby="heading_1" data-parent="#accordionObs">
 						<div class="card-body" style="padding: 15px 40px 0px 40px;">
 							<div class="form-group row">
-								<label for="data" class="col-form-label" style="margin-right: 5px">Feito até o dia:</label>
+								<label for="data" class="col-form-label" style="margin-right: 5px">Feita até o dia:</label>
 								<input id="data" name="data" type="date" class="form-control" style="width: 180px; margin-right: 8px" required>
 								<button type="submit" class="btn btn-success">Confirmar</button>
 							</div>
@@ -382,7 +388,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-					<form id="form_excluirTudo" method="POST" action="cadastrar/zerar.php">
+					<form id="form_excluirTudo" method="POST" action="excluir/zerar.php">
 						<!-- <input type="hidden" name="verificador" value="<?php echo $vetor['codigo']; ?>"> -->
 						<input type="hidden" id="input_contador" name="input_contador" value="<?php echo $contador ?>">
 						<input type="submit" name="btn_modal_excluir" id="btn_modal_excluir" class="btn btn-danger" value="Zerar tudo"></button><!-- onclick="excluirTudo(<?php echo $vetor_maior_id['codigo'] ?>)" -->

@@ -18,7 +18,7 @@
         });
         $(document).ready(function() {
             $('#nome_produto').autocomplete({
-                source: "../alterar/pesquisar_autocomplete.php",
+                source: "../pesquisar/pesquisar_autocomplete.php",
                 minLength: 1,
                 select: function(event, ui) {
                     $('#nome_produto').val(ui.item.value);

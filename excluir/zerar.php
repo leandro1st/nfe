@@ -8,6 +8,7 @@ require('../externo/connect.php');
 
 $contador = $_POST['input_contador'];
 $zerar_tudo = mysqli_query($connect, "UPDATE $vendas SET $quantidade = 0, $ultima_mod = '0000-00-00 00:00:00'");
+$zerar_observacao = mysqli_query($connect, "UPDATE $observacao SET $ultima_data = '0000-00-00'");
 // $quantidade = mysqli_affected_rows($connect);
 
 ?>
