@@ -106,10 +106,11 @@ $numero = mysqli_num_rows($procurar);
         <table class="table table-striped table-light table-hover" id="tabela_produtos">
             <thead>
                 <tr align="center" class="table-warning">
-                    <th width="10%">Athos</th>
-                    <th>Referência</th>
-                    <th>NOME</th>
-                    <th>
+                    <th class="theader_top" width="">Banco</th>
+                    <th class="theader_top" width="10%">Athos</th>
+                    <th class="theader_top">Referência</th>
+                    <th class="theader_top">Nome do produto</th>
+                    <th class="theader_top">
                         <i class="far fa-trash-alt" style="color: red; font-size: 22px;"></i>
                     </th>
                 </tr>
@@ -124,14 +125,15 @@ $numero = mysqli_num_rows($procurar);
                         <?php
                         $file_explode = explode('.', $vetor['imagem']);
                         $file_ext = strtolower(end($file_explode));
-                        $extensions = array("jpeg", "jpg", "png", "gif");
+                        $extensions = array("jpeg", "jpg", "png", "gif", "webp");
 
                         if (($file_ext == "") || (in_array($file_ext, $extensions) === false)) { ?>
                             <tr id="linha-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" data-placement="top" title="<i class='fas fa-image' style='font-size: 16px; color: #92b0b3'></i>">
-                        <?php } else { ?>
+                            <?php } else { ?>
                             <tr id="linha-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" data-placement="top" title="<img src='../produtos/<?php echo $vetor['imagem'] ?>' width='130px'><br><span class='text-center'><?php echo $vetor['imagem'] ?></span>">
-                        <?php } ?>
+                            <?php } ?>
                             <input type="hidden" class="form-control" name="codigo_produto" value="<?php echo $vetor['codigo']; ?>">
+                            <td class="align-middle" align="center"><b><?php echo $vetor['codigo']; ?></b></td>
                             <td class="align-middle" align="center"><b><?php echo $vetor['cod_athos']; ?></b></td>
                             <td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
                             <td class="align-middle" width="75%"><b><?php echo $vetor['nome']; ?></b></td>

@@ -148,18 +148,19 @@ if (!isset($_POST['nome'])) {
                                     $file_type = $_FILES['imagem']['type'];
                                     $file_explode = explode('.', $img);
                                     $file_ext = strtolower(end($file_explode));
-                                    $nome_sem_extensao = strtolower($file_explode[0]);
-                                    $nome_novo = $nome_sem_extensao . " " . date("d.m.Y-H.i.s") . "." . $file_ext;
+                                    // $nome_sem_extensao = strtolower($file_explode[0]);
+                                    $nome_arquivo = str_replace(' ', '-', strtolower($n));
+                                    $nome_novo = $nome_arquivo . "_" . date("d-m-Y_H-i-s") . "." . $file_ext;
 
                                     $dir = '../produtos/';
-                                    $extensions = array("jpeg", "jpg", "png", "gif");
+                                    $extensions = array("jpeg", "jpg", "png", "gif", "webp");
                                     
                                     if ($file_ext == "") {
                                         #
                                         $adicionar = mysqli_query($connect, "INSERT INTO $vendas(cod_athos, id, nome, quantidade, imagem) VALUES('$athos','$cod', '$n', '0', '')");
                                     }
                                     else if (in_array($file_ext, $extensions) === false) {
-                                        echo "<span class='text-muted'>Arquivo inválido, somente JPEG, PNG ou GIF são aceitos.</span><br>";
+                                        echo "<span class='text-muted'>Arquivo inválido, somente JPEG, PNG, GIF ou WEBP são aceitos.</span><br>";
                                         $adicionar = mysqli_query($connect, "INSERT INTO $vendas(cod_athos, id, nome, quantidade, imagem) VALUES('$athos','$cod', '$n', '0', '')");
                                     } else {
                                         move_uploaded_file($file_tmp, $dir . $nome_novo);

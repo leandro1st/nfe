@@ -193,3 +193,9 @@ a:link {
 }
 
 /* Custom card left border */
+
+/* sticky theader */
+.theader_top {
+    position: sticky;
+    top: 60px;
+}

@@ -164,11 +164,6 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 		.card .card-body {
 			border-top: 2px solid #ff7b00;
 		}
-
-		.theader_top {
-			position: sticky;
-			top: 60px;
-		}
 	</style>
 </head>
 
@@ -285,12 +280,12 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 		<table class="table table-striped table-light table-hover" id="tabela_produtos">
 			<thead>
 				<tr align="center" class="table-warning">
-					<th class="theader_top" width="">#</th>
+					<th class="theader_top" width="">Banco</th>
 					<th class="theader_top" width="10%">Athos</th>
 					<th class="theader_top">Referência</th>
-					<th class="theader_top">NOME</th>
+					<th class="theader_top">Nome do produto</th>
 					<th class="theader_top"><i class="fas fa-history text-success" style="font-size: 22px" data-toggle="tooltip" data-html="true" title="<b>Última atividade</b>"></i></th>
-					<th class="theader_top">QUANTIDADE</th>
+					<th class="theader_top">Quantidade</th>
 					<th class="theader_top"><i class="far fa-edit" style="color: green; font-size: 22px;" data-toggle="tooltip" data-html="true" title="<i><b>Adicionar 1</b></i>"></i></th>
 					<th class="theader_top">
 						<a data-toggle="modal" data-target="#modalExcluirTudo" style="cursor: pointer">

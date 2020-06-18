@@ -185,7 +185,7 @@ if (isset($_POST['nome_produto'])) {
                                 <?php
                                 $file_explode = explode('.', $vetor['imagem']);
                                 $file_ext = strtolower(end($file_explode));
-                                $extensions = array("jpeg", "jpg", "png", "gif");
+                                $extensions = array("jpeg", "jpg", "png", "gif", "webp");
 
                                 if (($file_ext == "") || (in_array($file_ext, $extensions) === false)) { ?>
                                     <fieldset id="sem_imagem" class="img-thumbnail text-center" style="padding: 40px; background-color: #575759">

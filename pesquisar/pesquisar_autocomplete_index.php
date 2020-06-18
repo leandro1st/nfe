@@ -35,7 +35,7 @@ if (isset($_GET["term"])) {
             // Verificando se imagem existe
             $file_explode = explode('.', $row['imagem']);
             $file_ext = strtolower(end($file_explode));
-            $extensions = array("jpeg", "jpg", "png", "gif");
+            $extensions = array("jpeg", "jpg", "png", "gif", "webp");
 
             if (($file_ext == "") || (in_array($file_ext, $extensions) === false)) {
                 $temp_array['label'] = '<div class="row" style="margin: 0; display: flex; justify-content: center; align-items: center"><div class="col-4"><fieldset id="sem_imagem" class="img-thumbnail text-center" style="padding: 15px 0px 10px 0px; background-color: #575759"><div><i class="fas fa-image" style="font-size: 25px; color: white"></i></fieldset></div><div class="col">' . $row['nome'] . '</div></div>';
