@@ -15,4 +15,7 @@
 	if($query){
 		echo $vetor_quantidade;
 	}
+	// $host = 'localhost';
+	// $user = 'root';
+	// exec("C:/xampp/mysql/bin/mysqldump --single-transaction --user=$user --skip-password --host=$host nfe > ../file.sql");
 ?>
