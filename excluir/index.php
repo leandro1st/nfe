@@ -78,7 +78,7 @@ $numero = mysqli_num_rows($procurar);
                     <a class="nav-link" href="../cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
                 <li class="nav-item px-1 active">
-                    <a class="nav-link underline" href="#"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
+                    <a class="nav-link underline" href="javascript:void(0)"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
             </ul>
             <form id="form_pesquisa" class="form-inline my-2 my-lg-0" method="POST" action="../alterar/">
@@ -92,7 +92,7 @@ $numero = mysqli_num_rows($procurar);
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
         <ol class="breadcrumb" style="background: none; margin: 0;">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
-            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="far fa-trash-alt"></i> Excluir Produtos</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)" class="none_li"><i class="far fa-trash-alt"></i> Excluir Produtos</a></li>
         </ol>
     </nav>
     <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">

@@ -13,7 +13,7 @@ if (!isset($_POST['nome'])) {
     $cod = mb_convert_case(trim($_POST['id']), MB_CASE_UPPER, 'utf-8');
     $img = $_FILES['imagem']['name'];
 
-    $pesquisar = mysqli_query($connect, "SELECT * FROM $vendas WHERE $nome = '$n'");
+    $pesquisar = mysqli_query($connect, "SELECT * FROM $vendas WHERE $cod_athos = '$athos'");
     $numero_produtos = mysqli_fetch_array($pesquisar);
 ?>
     <html lang="en">

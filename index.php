@@ -26,7 +26,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 	<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript">
-		function cadastrar(id, contador, ultima_quantidade) {
+		function cadastrar(id, contador, ultima_quantidade, produto) {
 			var cont = parseInt(contador);
 			$.ajax({
 				type: "POST",
@@ -34,6 +34,14 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 				cache: false,
 				data: $("#form-" + id + '').serialize(),
 				success: function(data) {
+					var today = new Date();
+					var date = ("0" + today.getDate()).slice(-2) + '/' + ("0" + (today.getMonth() + 1)).slice(-2) + '/' + today.getFullYear();
+					var time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
+					var dateTime = date + ' ' + time;
+					// alert(dateTime);
+					document.getElementById('ultima_modificacao_produto-' + id).innerHTML = '<small class="text-muted"> (Última modificação: ' + dateTime + ')</small>';
+					document.getElementById('ultima_modificacao_top').innerHTML = produto + '<small class="text-muted"> (' + dateTime + ')</small>';
+
 					document.getElementById("qntd-" + id + '').innerHTML = data;
 					if (data - ultima_quantidade > 0) {
 						document.getElementById("adicionado-" + id + '').className = "text-success";
@@ -54,7 +62,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 			});
 		}
 
-		function remover(id, contador, ultima_quantidade) {
+		function remover(id, contador, ultima_quantidade, produto) {
 			var cont = parseInt(contador);
 			$.ajax({
 				type: "POST",
@@ -62,6 +70,14 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 				cache: false,
 				data: $("#form-" + id + '').serialize(),
 				success: function(data) {
+					var today = new Date();
+					var date = ("0" + today.getDate()).slice(-2) + '/' + ("0" + (today.getMonth() + 1)).slice(-2) + '/' + today.getFullYear();
+					var time = ("0" + today.getHours()).slice(-2) + ":" + ("0" + today.getMinutes()).slice(-2) + ":" + ("0" + today.getSeconds()).slice(-2);
+					var dateTime = date + ' ' + time;
+					// alert(dateTime);
+					document.getElementById('ultima_modificacao_produto-' + id).innerHTML = '<small class="text-muted"> (Última modificação: ' + dateTime + ')</small>';
+					document.getElementById('ultima_modificacao_top').innerHTML = produto + '<small class="text-muted"> (' + dateTime + ')</small>';
+
 					if (data == 0) {
 						cont--;
 						document.getElementById('cont').innerHTML = cont;
@@ -169,7 +185,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 
 <body>
 	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" href="javascript:void(0)">
 			<img src="imagens/logo.png" alt="logo" width="35px">
 			<!-- <i class="far fa-calendar-alt" style="font-size: 35px;"></i> -->
 		</a>
@@ -180,7 +196,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item px-1 active">
-					<a class="nav-link underline" href="#"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
+					<a class="nav-link underline" href="javascript:void(0)"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
 				</li>
 				<li class="nav-item px-1">
 					<a class="nav-link" href="cadastrar/"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
@@ -203,11 +219,13 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 	</nav>
 	<p class="lead text-white" style="position: absolute; margin: 15px 0 0 25px; font-size: 18px">
 		<b>Última modificação:</b>
-		<?php if ($vetor_ultima_alteracao['ultima_mod'] != '0000-00-00 00:00:00') {
-			echo $vetor_ultima_alteracao['nome'] ?><small class="text-muted"> (<?php echo date("d/m/Y H:i:s", strtotime($vetor_ultima_alteracao['ultima_mod'])) ?>)</small>
-		<?php } else {
-			echo "–";
-		} ?>
+		<span id="ultima_modificacao_top">
+			<?php if ($vetor_ultima_alteracao['ultima_mod'] != '0000-00-00 00:00:00') {
+				echo $vetor_ultima_alteracao['nome'] ?><small class="text-muted"> (<?php echo date("d/m/Y H:i:s", strtotime($vetor_ultima_alteracao['ultima_mod'])) ?>)</small>
+			<?php } else {
+				echo "–";
+			} ?>
+		</span>
 	</p>
 	<div class="jumbotron" style="background-image: url('imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
 		<center>
@@ -227,6 +245,8 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 					'11' => 'Novembro',
 					'12' => 'Dezembro'
 				);
+				date_default_timezone_set('America/Sao_Paulo');
+				// echo date('d-m-Y H:i:s');
 				$mes = $meses[date('m')];
 				?>
 				<?php print $mes . ' - ' . date('Y'); ?>
@@ -313,9 +333,11 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 							<td class="align-middle" width="70%">
 								<!--  data-toggle="tooltip" data-html="true" title="<img width='100px' src='produtos/<?php echo $vetor['imagem'] ?>'>" -->
 								<b><?php echo $vetor['nome']; ?></b>
-								<?php if ($vetor['ultima_mod'] != "0000-00-00 00:00:00") { ?>
-									<small class="text-muted"> (Última modificação: <?php echo date("d/m/Y H:i:s", strtotime($vetor['ultima_mod'])) ?>)</small>
-								<?php } ?>
+								<span id="ultima_modificacao_produto-<?php echo $vetor['codigo'] ?>">
+									<?php if ($vetor['ultima_mod'] != "0000-00-00 00:00:00") { ?>
+										<small class="text-muted"> (Última modificação: <?php echo date("d/m/Y H:i:s", strtotime($vetor['ultima_mod'])) ?>)</small>
+									<?php } ?>
+								</span>
 							</td>
 							<td class="align-middle" width="5%" align="center" style="font-size:18px">
 								<b>
@@ -327,8 +349,8 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 									<font id="qntd-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" title="Última contagem: <?php echo $vetor['quantidade'] ?>"><?php echo $vetor['quantidade']; ?></font>
 								</b>
 							</td>
-							<td align="center"><button class="btn btn-success" type="button" onclick="cadastrar('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>')">+1</button></td>
-							<td align="center"><button class="btn btn-danger" type="button" onclick="remover('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>')">-1</button></td>
+							<td align="center"><button class="btn btn-success" type="button" onclick="cadastrar('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>', '<?php echo $vetor['nome'] ?>')">+1</button></td>
+							<td align="center"><button class="btn btn-danger" type="button" onclick="remover('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>', '<?php echo $vetor['nome'] ?>')">-1</button></td>
 						</tr>
 					</form>
 				<?php } ?>

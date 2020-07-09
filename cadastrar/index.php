@@ -32,6 +32,25 @@
                     .appendTo(ul);
             };
         });
+
+        function pesquisar_produto() {
+            $.ajax({
+                method: 'POST',
+                url: '../pesquisar/pesquisa_produto.php',
+                data: $('#form_cadastrar').serialize(),
+                success: function(data) {
+                    // Dividindo a data em um array de strings
+                    dados_produto = data.split("|");
+                    // Preenchendo automaticamente de acordo com o código Athos fornecido
+                    // Se o código não existir no banco, os campos não serão preenchidos
+                    document.getElementById('campo_nome').value = dados_produto[1].trim();
+                    document.getElementById('campo_id').value = dados_produto[2].trim();
+                },
+                error: function(data) {
+                    alert("Ocorreu um erro!");
+                }
+            });
+        }
     </script>
 </head>
 
@@ -51,7 +70,7 @@
                     <a class="nav-link" href="../"><i class="fas fa-home" style="font-size: 24px; vertical-align: middle"></i></a>
                 </li>
                 <li class="nav-item px-1 active">
-                    <a class="nav-link underline" href="#"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
+                    <a class="nav-link underline" href="javascript:void(0)"><i class="fas fa-edit text-success" style="font-size: 24px; vertical-align: middle"></i> </a>
                 </li>
                 <li class="nav-item px-1">
                     <a class="nav-link" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
@@ -68,7 +87,7 @@
     <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
         <ol class="breadcrumb" style="background: none; margin: 0;">
             <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
-            <li class="breadcrumb-item active"><a href="#" class="none_li"><i class="far fa-edit"></i> Cadastrar Produto</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)" class="none_li"><i class="far fa-edit"></i> Cadastrar Produto</a></li>
         </ol>
     </nav>
     <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
@@ -81,21 +100,21 @@
             <div class="row">
                 <div class="col-9">
                     <div class="form-group">
-                        <label for="campo_nome">
-                            <b>Nome do produto:</b>
-                        </label>
-                        <input type="text" id="campo_nome" name="nome" class="form-control" placeholder="Nome do produto" required autofocus>
-                        <div class="invalid-feedback">
-                            Forneça o nome do produto!
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="campo_cod_athos">
                             <b>Código Athos do produto:</b>
                         </label>
-                        <input type="text" id="campo_cod_athos" name="codigo_athos" class="form-control" placeholder="Código do produto" required>
+                        <input type="text" id="campo_cod_athos" name="codigo_athos" class="form-control" placeholder="Código do produto" onkeyup="pesquisar_produto()" required autofocus>
                         <div class="invalid-feedback">
                             Forneça o código Athos do produto!
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="campo_nome">
+                            <b>Nome do produto:</b>
+                        </label>
+                        <input type="text" id="campo_nome" name="nome" class="form-control" placeholder="Nome do produto" required>
+                        <div class="invalid-feedback">
+                            Forneça o nome do produto!
                         </div>
                     </div>
                     <div class="form-group">
@@ -115,12 +134,12 @@
                             <figure>
                                 <img id="preview" src="../imagens/upload.png" class="img-thumbnail" title="Selecionar uma imagem" width="200px" height="" style="cursor: pointer; display: none">
                                 <fieldset id="sem_imagem" class="img-thumbnail" style="padding: 40px; cursor: pointer">
-                                <div>
-                                    <i class="fas fa-upload" style="font-size: 40px; color: #92b0b3; margin-bottom: 10px"></i>
-                                </div>    
-                                <div>
-                                    <span class="lead" style="font-size: 18px">Escolher uma imagem</span>
-                                </div>
+                                    <div>
+                                        <i class="fas fa-upload" style="font-size: 40px; color: #92b0b3; margin-bottom: 10px"></i>
+                                    </div>
+                                    <div>
+                                        <span class="lead" style="font-size: 18px">Escolher uma imagem</span>
+                                    </div>
                                 </fieldset>
                                 <input id="campo_img" name="imagem" type="file" accept="image/*" style="display: none;" onchange="document.getElementById('sem_imagem').style.display = 'none'; document.getElementById('preview').style.display = 'inline'; document.getElementById('preview').src = window.URL.createObjectURL(this.files[0]); document.getElementById('btn_img').style.display = 'none';">
                                 <figcaption class="text-center">

@@ -4,6 +4,7 @@
 
 	$vendas = "vendas";
 	$observacao = "observacao";
+	$produtos = "produtos";
 
 	$quantidade = "quantidade";
 	$id = "id";
@@ -13,4 +14,5 @@
 	$ultima_mod = "ultima_mod";
 	$ultima_data = "ultima_data";
 	$imagem = "imagem";
+	$id_produto = "id_produto";
 ?>

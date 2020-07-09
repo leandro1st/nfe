@@ -129,7 +129,7 @@ if (isset($_POST['nome_produto'])) {
                         <a class="nav-link" href="../excluir/"><i class="far fa-trash-alt text-danger" style="font-size: 24px; vertical-align: middle"></i> </a>
                     </li>
                     <li class="nav-item px-1 active">
-                        <a class="nav-link underline" href="#"><i class="fas fa-search text-white" style="font-size: 24px; vertical-align: middle"></i> </a>
+                        <a class="nav-link underline" href="javascript:void(0)"><i class="fas fa-search text-white" style="font-size: 24px; vertical-align: middle"></i> </a>
                     </li>
                 </ul>
                 <form id="form_pesquisa" class="form-inline my-2 my-lg-0" method="POST" action="./">
@@ -144,7 +144,7 @@ if (isset($_POST['nome_produto'])) {
             <ol class="breadcrumb" style="background: none; margin: 0;">
                 <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
                 <li class="breadcrumb-item active">
-                    <a id="link_titulo" href="#" class="none_li"><i class="fas fa-search text-white"></i>
+                    <a id="link_titulo" href="javascript:void(0)" class="none_li"><i class="fas fa-search text-white"></i>
                         <?php
                         if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) {
                             echo "Pesquisar";
