@@ -4,14 +4,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>NF-e | Cadastrar Produtos</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../externo/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/nfe.ico" type="image/x-icon">
     <link rel="stylesheet" href="../externo/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-    <script src="../jquery/jquery-3.4.0.min.js"></script>
+    <script src="../externo/jquery/jquery-3.4.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../externo/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#form_cadastrar')[0].reset();
@@ -77,7 +77,7 @@
                 </li>
             </ul>
             <form id="form_pesquisa" class="form-inline my-2 my-lg-0" method="POST" action="../alterar/">
-                <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+                <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Código do banco" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
                 <div id="div_autocomplete">
                 </div>
                 <button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>

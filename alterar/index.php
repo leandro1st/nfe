@@ -26,14 +26,14 @@ if (isset($_POST['nome_produto'])) {
             }
             ?>
         </title>
-        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../externo/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="shortcut icon" href="../imagens/nfe.ico" type="image/x-icon">
         <link rel="stylesheet" href="../externo/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-        <script src="../jquery/jquery-3.4.0.min.js"></script>
+        <script src="../externo/jquery/jquery-3.4.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-        <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../externo/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script>
             function alterar(nome, athos, id) {
                 $.ajax({
@@ -41,53 +41,30 @@ if (isset($_POST['nome_produto'])) {
                     url: "alterar.php",
                     data: $("#form-alterar").serialize(),
                     success: function(data) {
-                        if ((nome.trim() != '' && nome.trim() != null) && (athos.trim() != '' && athos.trim() != null) && (id.trim() != '' && id.trim() != null)) {
-                            alert(data);
-                            document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
-                            document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
-                            document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
-                            document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
-                            // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
-                            document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
-                            document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
-                        } else if ((nome.trim() != '' && nome.trim() != null) && (athos.trim() != '' && athos.trim() != null)) {
-                            alert(data);
-                            document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
-                            document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
-                            document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
-                            document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
-                            // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
-                            document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
-                        } else if ((nome.trim() != '' && nome.trim() != null) && (id.trim() != '' && id.trim() != null)) {
-                            alert(data);
-                            document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
-                            document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
-                            document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
-                            document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
-                            // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
-                            document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
-                        } else if ((athos.trim() != '' && athos.trim() != null) && (id.trim() != '' && id.trim() != null)) {
-                            alert(data);
-                            document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
-                            document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
-                        } else if (nome.trim() != '' && nome.trim() != null) {
-                            alert(data);
-                            document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
-                            document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
-                            document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
-                            document.getElementById('mostrar_titulo').innerHTML = nome.toUpperCase();
-                            // document.getElementById('mostrar_nome').innerHTML = nome.toUpperCase();
-                        } else if (athos.trim() != '' && athos.trim() != null) {
-                            alert(data);
-                            document.getElementById('mostrar_athos').innerHTML = athos.toUpperCase();
-                        } else if (id.trim() != '' && id.trim() != null) {
-                            alert(data);
-                            document.getElementById('mostrar_codigo').innerHTML = id.toUpperCase();
-                        }
-                        //ok
+                        document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
+                        document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
+                        document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
+
+                        // informações do modal
+                        document.getElementById('nome_antigo_modal').innerHTML = document.getElementById('nome_antigo').value;
+                        document.getElementById('nome_novo_modal').innerHTML = nome.toUpperCase();
+                        document.getElementById('athos_antigo_modal').innerHTML = document.getElementById('athos_antigo').value;
+                        document.getElementById('athos_novo_modal').innerHTML = athos;
+                        document.getElementById('referencia_antiga_modal').innerHTML = document.getElementById('referencia_antiga').value;
+                        document.getElementById('referencia_nova_modal').innerHTML = id;
+                        $('#modalAlteradoInfo').modal('show');
                     },
                 });
             }
+
+            // Resentando o valor do input, pois o cursor estava começando da direita
+            $(document).ready(function() {
+                var copia_nome = document.getElementById('nome').value;
+                document.getElementById('nome').value = '';
+                document.getElementById('nome').value = copia_nome;
+                document.getElementById('nome').focus();
+            });
+
             $(document).ready(function() {
                 $('#nome_produto').autocomplete({
                     source: "../pesquisar/pesquisar_autocomplete.php",
@@ -133,7 +110,7 @@ if (isset($_POST['nome_produto'])) {
                     </li>
                 </ul>
                 <form id="form_pesquisa" class="form-inline my-2 my-lg-0" method="POST" action="./">
-                    <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+                    <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Código do banco" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
                     <div id="div_autocomplete">
                     </div>
                     <button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>
@@ -201,60 +178,134 @@ if (isset($_POST['nome_produto'])) {
                                 <?php } ?>
                             </div>
                             <div class="col-md-9">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <font id="mostrar_titulo"><?php echo $vetor['nome'] ?></font>
-                                    </h5>
-                                    <p class="card-text lead">
-                                        Código (banco de dados): <b><?php echo $vetor['codigo'] ?></b>
-                                    </p>
-                                    <!-- <p class="card-text lead">
-                                        Nome do produto: <b>
-                                            <font id="mostrar_nome"><?php echo $vetor['nome'] ?></font>
-                                        </b>
-                                    </p> -->
-                                    <p class="card-text lead">
-                                        Código Athos: <b>
-                                            <font id="mostrar_athos"><?php echo $vetor['cod_athos'] ?></font>
-                                        </b>
-                                    </p>
-                                    <p class="card-text lead">
-                                        Referência Athos: <b>
-                                            <font id="mostrar_codigo"><?php echo $vetor['id'] ?></font>
-                                        </b>
-                                    </p>
-                                    <p class="card-text text-muted bd-callout bd-callout-warning">
+                                <div class="card-body" style="margin-bottom: 3rem">
+                                    <!-- <p class="card-text text-muted bd-callout bd-callout-warning">
                                         <small>*Não é necessário preencher todos os campos!</small>
+                                    </p> -->
+                                    <p class="card-text">
+                                        <label for="nome" class="lead">
+                                            <b>Nome novo:</b>
+                                        </label>
+                                        <!-- Nome antigo modal -->
+                                        <input type="hidden" id="nome_antigo" class="form-control" value="<?php echo $vetor['nome'] ?>">
+                                        <input type="text" id="nome" name="nome_novo" class="form-control" placeholder="Nome novo" value="<?php echo $vetor['nome'] ?>">
                                     </p>
                                     <p class="card-text">
-                                        <input type="hidden" name="codigo" class="form-control" value="<?php echo $vetor['codigo'] ?>">
-                                        <input type="text" id="nome" name="nome_novo" class="form-control" placeholder="Nome novo" autofocus>
+                                        <label for="athos" class="lead">
+                                            <b>Código Athos novo:</b>
+                                        </label>
+                                        <!-- Código athos antigo modal -->
+                                        <input type="hidden" id="athos_antigo" class="form-control" value="<?php echo $vetor['cod_athos'] ?>">
+                                        <input type="text" id="athos" name="athos_novo" class="form-control" placeholder="Novo código Athos" value="<?php echo $vetor['cod_athos'] ?>">
                                     </p>
                                     <p class="card-text">
-                                        <input type="text" id="athos" name="athos_novo" class="form-control" placeholder="Novo código Athos">
+                                        <label for="id" class="lead">
+                                            <b>Referência nova:</b>
+                                        </label>
+                                        <!-- Referência antiga modal -->
+                                        <input type="hidden" id="referencia_antiga" class="form-control" value="<?php echo $vetor['id'] ?>">
+                                        <input type="text" id="id" name="codigo_novo" class="form-control" placeholder="Nova referência Athos" value="<?php echo $vetor['id'] ?>">
                                     </p>
-                                    <p class="card-text">
-                                        <input type="text" id="id" name="codigo_novo" class="form-control" placeholder="Nova referência Athos">
-                                    </p>
-                                    <button type="submit" class="btn btn-lg btn-success" style="float: right">Alterar</button><br><br>
+                                    <input type="hidden" name="codigo" class="form-control" value="<?php echo $vetor['codigo'] ?>">
+                                    <button type="submit" class="btn btn-lg btn-success" style="float: right">Alterar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
             <?php } else if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) { ?>
-                <br><br>
-                <center>
-                    <p class="lead" style="font-size: 30px;">Nenhum nome fornecido!</p>
-                </center>
+                <script>
+                    $(document).ready(function() {
+                        if (window.matchMedia("(max-width:1366px)").matches) {
+                            document.getElementById("footer1").style.marginBottom = "-269px";
+                        } else if (window.matchMedia("(min-width:1600px) and (max-width:1920px)").matches) {
+                            document.getElementById("footer1").style.marginBottom = "-68px";
+                        }
+                    });
+                </script>
+                <p class="lead" style="padding-top: 13%; font-size: 40px; text-align: center">Nenhum código do banco fornecido!</p>
             <?php } else { ?>
-                <br><br>
-                <center>
-                    <p class="lead" style="font-size: 30px;">Nenhum cadastro encontrado!</p>
-                </center>
+                <script>
+                    $(document).ready(function() {
+                        if (window.matchMedia("(max-width:1366px)").matches) {
+                            document.getElementById("footer1").style.marginBottom = "-269px";
+                        } else if (window.matchMedia("(min-width:1600px) and (max-width:1920px)").matches) {
+                            document.getElementById("footer1").style.marginBottom = "-68px";
+                        }
+                    });
+                </script>
+                <p class="lead" style="padding-top: 13%; font-size: 40px; text-align: center">Nenhum cadastro encontrado!</p>
             <?php } ?>
-        </main><br><br><br><br><br><br><br><br><br>
-        <footer class="footer">
+        </main>
+
+        <!-- Modal alteração -->
+        <div class="modal fade" id="modalAlteradoInfo" tabindex="-1" role="dialog" aria-labelledby="modalAlteradoInfoTitle" aria-hidden="true" onkeypress="$('#modalAlteradoInfo').modal('toggle');">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-success" id="modalTitle">
+                            Informações alteradas!
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr class="text-center text-warning table-warning lead">
+                                        <th width="17%"></th>
+                                        <th>ANTIGO</th>
+                                        <th>NOVO</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr class="lead">
+                                        <td class="text-right">
+                                            <b>Nome</b>
+                                        </td>
+                                        <td>
+                                            <span id="nome_antigo_modal"></span>
+                                        </td>
+                                        <td>
+                                            <span class="text-success" id="nome_novo_modal"></span>
+                                        </td>
+                                    </tr>
+                                    <tr class="lead">
+                                        <td class="text-right">
+                                            <b>Cód. Athos</b>
+                                        </td>
+                                        <td>
+                                            <span id="athos_antigo_modal"></span>
+                                        </td>
+                                        <td>
+                                            <span class="text-success" id="athos_novo_modal"></span>
+                                        </td>
+                                    </tr>
+                                    <tr class="lead">
+                                        <td class="text-right">
+                                            <b>Referência</b>
+                                        </td>
+                                        <td>
+                                            <span id="referencia_antiga_modal"></span>
+                                        </td>
+                                        <td>
+                                            <span class="text-success" id="referencia_nova_modal"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer1" class="footer" style="margin-bottom: -250px">
             <!-- Footer Elements -->
             <div style="background-color: #3e4551; padding: 16px">
                 <center>

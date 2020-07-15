@@ -9,14 +9,14 @@ $numero = mysqli_num_rows($procurar);
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>NF-e | Excluir Produtos</title>
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../externo/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="shortcut icon" href="../imagens/nfe.ico" type="image/x-icon">
     <link rel="stylesheet" href="../externo/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-    <script src="../jquery/jquery-3.4.0.min.js"></script>
+    <script src="../externo/jquery/jquery-3.4.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../externo/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
         function nomeProduto(nome, codigo) {
             document.getElementById("nome1_modal").innerHTML = nome;
@@ -82,7 +82,7 @@ $numero = mysqli_num_rows($procurar);
                 </li>
             </ul>
             <form id="form_pesquisa" class="form-inline my-2 my-lg-0" method="POST" action="../alterar/">
-                <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Referência do produto" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
+                <input class="form-control mr-sm-2" id="nome_produto" name="nome_produto" placeholder="Nome/Código do banco" aria-label="Search" autocomplete="off" style="width: 300px; background-color: #eee; border-radius: 9999px; border: none; padding-left: 20px; padding-right: 42px">
                 <div id="div_autocomplete">
                 </div>
                 <button type="submit" style="position: absolute; margin-left: 259px; border: none; cursor: pointer"><i class="fas fa-search text-success"></i></button>
@@ -98,55 +98,68 @@ $numero = mysqli_num_rows($procurar);
     <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
         <center>
             <h1>
-                <font color="white">Excluir Produtos</font><br>
+                <font color="white">Excluir Produtos</font>
             </h1>
         </center>
     </div>
     <main class="container">
-        <table class="table table-striped table-light table-hover" id="tabela_produtos">
-            <thead>
-                <tr align="center" class="table-warning">
-                    <th class="theader_top" width="">Banco</th>
-                    <th class="theader_top" width="10%">Athos</th>
-                    <th class="theader_top">Referência</th>
-                    <th class="theader_top">Nome do produto</th>
-                    <th class="theader_top">
-                        <i class="far fa-trash-alt" style="color: red; font-size: 22px;"></i>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $contador = 0;
-                for ($i = 0; $i < $numero; $i++) {
-                    $vetor = mysqli_fetch_array($procurar);
-                ?>
-                    <form id="form-<?php echo $vetor['codigo']; ?>" method="POST">
-                        <?php
-                        $file_explode = explode('.', $vetor['imagem']);
-                        $file_ext = strtolower(end($file_explode));
-                        $extensions = array("jpeg", "jpg", "png", "gif", "webp");
+        <?php if ($numero > 0) { ?>
+            <table class="table table-striped table-light table-hover" id="tabela_produtos">
+                <thead>
+                    <tr align="center" class="table-warning">
+                        <th class="theader_top" width="">Banco</th>
+                        <th class="theader_top" width="10%">Athos</th>
+                        <th class="theader_top">Referência</th>
+                        <th class="theader_top">Nome do produto</th>
+                        <th class="theader_top">
+                            <i class="far fa-trash-alt" style="color: red; font-size: 22px;"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $contador = 0;
+                    for ($i = 0; $i < $numero; $i++) {
+                        $vetor = mysqli_fetch_array($procurar);
+                    ?>
+                        <form id="form-<?php echo $vetor['codigo']; ?>" method="POST">
+                            <?php
+                            $file_explode = explode('.', $vetor['imagem']);
+                            $file_ext = strtolower(end($file_explode));
+                            $extensions = array("jpeg", "jpg", "png", "gif", "webp");
 
-                        if (($file_ext == "") || (in_array($file_ext, $extensions) === false)) { ?>
-                            <tr id="linha-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" data-placement="top" title="<i class='fas fa-image' style='font-size: 16px; color: #92b0b3'></i>">
-                            <?php } else { ?>
-                            <tr id="linha-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" data-placement="top" title="<img src='../produtos/<?php echo $vetor['imagem'] ?>' width='130px'><br><span class='text-center'><?php echo $vetor['imagem'] ?></span>">
-                            <?php } ?>
-                            <input type="hidden" class="form-control" name="codigo_produto" value="<?php echo $vetor['codigo']; ?>">
-                            <td class="align-middle" align="center"><b><?php echo $vetor['codigo']; ?></b></td>
-                            <td class="align-middle" align="center"><b><?php echo $vetor['cod_athos']; ?></b></td>
-                            <td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
-                            <td class="align-middle" width="75%"><b><?php echo $vetor['nome']; ?></b></td>
-                            <td align="center" width="7%">
-                                <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" onclick="nomeProduto('<?php echo $vetor['nome']; ?>', '<?php echo $vetor['codigo']; ?>')" style="color: red; font-size: 28px; cursor: pointer;">
-                            </td>
-                            </tr>
-                    </form>
-                <?php } ?>
-            </tbody>
-        </table>
-    </main><br><br><br><br><br><br><br><br><br>
-    <footer class="footer">
+                            if (($file_ext == "") || (in_array($file_ext, $extensions) === false)) { ?>
+                                <tr id="linha-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" data-placement="top" title="<i class='fas fa-image' style='font-size: 16px; color: #92b0b3'></i>">
+                                <?php } else { ?>
+                                <tr id="linha-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" data-placement="top" title="<img src='../produtos/<?php echo $vetor['imagem'] ?>' width='130px'><br><span class='text-center'><?php echo $vetor['imagem'] ?></span>">
+                                <?php } ?>
+                                <input type="hidden" class="form-control" name="codigo_produto" value="<?php echo $vetor['codigo']; ?>">
+                                <td class="align-middle" align="center"><b><?php echo $vetor['codigo']; ?></b></td>
+                                <td class="align-middle" align="center"><b><?php echo $vetor['cod_athos']; ?></b></td>
+                                <td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
+                                <td class="align-middle" width="75%"><b><?php echo $vetor['nome']; ?></b></td>
+                                <td align="center" width="7%">
+                                    <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" onclick="nomeProduto('<?php echo $vetor['nome']; ?>', '<?php echo $vetor['codigo']; ?>')" style="color: red; font-size: 28px; cursor: pointer;">
+                                </td>
+                                </tr>
+                        </form>
+                    <?php } ?>
+                </tbody>
+            </table>
+        <?php } else { ?>
+            <script>
+                $(document).ready(function() {
+                    if (window.matchMedia("(max-width:1366px)").matches) {
+                        document.getElementById("footer1").style.marginBottom = "-269px";
+                    } else if (window.matchMedia("(min-width:1600px) and (max-width:1920px)").matches) {
+                        document.getElementById("footer1").style.marginBottom = "-68px";
+                    }
+                });
+            </script>
+            <p class="lead" style="padding-top: 13%; font-size: 40px; text-align: center">Não há nenhum registro a ser excluído!</p>
+        <?php } ?>
+    </main>
+    <footer id="footer1" class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
             <center>

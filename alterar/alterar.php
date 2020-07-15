@@ -8,9 +8,12 @@ $n = mb_convert_case(trim($_POST['nome_novo']), MB_CASE_UPPER, 'utf-8');
 $athos_novo = mb_convert_case(trim($_POST['athos_novo']), MB_CASE_UPPER, 'utf-8');
 $referencia_nova = mb_convert_case(trim($_POST['codigo_novo']), MB_CASE_UPPER, 'utf-8');
 
+$alterar = mysqli_query($connect, "UPDATE  $vendas SET $id = '$referencia_nova', $cod_athos = '$athos_novo', $nome = '$n' WHERE $codigo = '$cod'");
+
+/*
 // Altera todos os valores
 if (($n != null && $n != '') and ($athos_novo != null && $athos_novo != '') and ($referencia_nova != null && $referencia_nova != '')) {
-    $alterar = mysqli_query($connect, "UPDATE $vendas SET $id = '$referencia_nova', $cod_athos = '$athos_novo', $nome = '$n' WHERE $codigo = '$cod'");
+    $alterar = mysqli_query($connect, "UPDATE  $vendas SET $id = '$referencia_nova', $cod_athos = '$athos_novo', $nome = '$n' WHERE $codigo = '$cod'");
     echo $vetor['nome'] . " alterado para " . $n . "\n" . $vetor['cod_athos'] . " alterado para " . $athos_novo . "\n" . $vetor['id'] . " alterado para " . $referencia_nova;
 // Altera o nome e o código Athos
 } else if (($n != null && $n != '') and ($athos_novo != null && $athos_novo != '')) {
@@ -39,3 +42,4 @@ if (($n != null && $n != '') and ($athos_novo != null && $athos_novo != '') and 
 } else {
     #
 }
+*/

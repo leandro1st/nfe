@@ -17,10 +17,10 @@ $zerar_observacao = mysqli_query($connect, "UPDATE $observacao SET $ultima_data 
 <head>
     <title>NF-e | Zerar Registros</title>
     <link rel="shortcut icon" href="../imagens/icon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../externo/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../externo/style.css">
-    <script src="../jquery/jquery-3.4.0.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../externo/jquery/jquery-3.4.0.min.js"></script>
+    <script src="../externo/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
         $(window).on('load', function() {
             $('#modalExcluido').modal('show');

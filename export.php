@@ -4,7 +4,7 @@ require("externo/connect.php");
 
 $mes_ano = $_POST['mes_ano'] . " " . date("Y");
 
-include_once('XLSXWriter/xlsxwriter.class.php');
+include_once('externo/XLSXWriter/xlsxwriter.class.php');
 $filename = "Vendas NF-e " . $mes_ano . ".xlsx";
 header('Content-disposition: attachment; filename="' . XLSXWriter::sanitize_filename($filename) . '"');
 header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
