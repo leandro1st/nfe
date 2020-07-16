@@ -2,7 +2,7 @@
 
 require('../externo/connect.php');
 
-$cod_athos_produto = $_POST['codigo_athos'];
+$cod_athos_produto = trim($_POST['codigo_athos']);
 
 $pesquisa_produto = mysqli_query($connect, "SELECT id_produto, nome, referencia FROM $produtos WHERE $cod_athos = '$cod_athos_produto'");
 $vetor_produto = mysqli_fetch_array($pesquisa_produto);

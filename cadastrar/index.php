@@ -45,11 +45,30 @@
                     // Se o código não existir no banco, os campos não serão preenchidos
                     document.getElementById('campo_nome').value = dados_produto[1].trim();
                     document.getElementById('campo_id').value = dados_produto[2].trim();
+                    
+                    // chamando a função para validar os inputs
+                    validar_inputs();
                 },
                 error: function(data) {
                     alert("Ocorreu um erro!");
                 }
             });
+        }
+
+        function validar_inputs() {
+            var nome_input = $("#campo_nome").val().trim();
+            var athos_input = $("#campo_cod_athos").val().trim();
+            var referencia_input = $("#campo_id").val().trim();
+
+            if (nome_input && athos_input && referencia_input) {
+                document.getElementById('btn_enviar').className = 'btn btn-success';
+                document.getElementById('btn_enviar').disabled = false;
+                document.getElementById('btn_enviar').style.cursor = 'pointer';
+            } else {
+                document.getElementById('btn_enviar').className = 'btn btn-danger';
+                document.getElementById('btn_enviar').disabled = true;
+                document.getElementById('btn_enviar').style.cursor = 'not-allowed';
+            }
         }
     </script>
 </head>
@@ -112,7 +131,7 @@
                         <label for="campo_nome">
                             <b>Nome do produto:</b>
                         </label>
-                        <input type="text" id="campo_nome" name="nome" class="form-control" placeholder="Nome do produto" required>
+                        <input type="text" id="campo_nome" name="nome" class="form-control" placeholder="Nome do produto" required onkeyup="validar_inputs()">
                         <div class="invalid-feedback">
                             Forneça o nome do produto!
                         </div>
@@ -121,7 +140,7 @@
                         <label for="campo_id">
                             <b>Referência do produto:</b>
                         </label>
-                        <input type="text" id="campo_id" name="id" class="form-control" placeholder="Referência do produto" required>
+                        <input type="text" id="campo_id" name="id" class="form-control" placeholder="Referência do produto" required onkeyup="validar_inputs()">
                         <div class="invalid-feedback">
                             Forneça a referência do produto!
                         </div>
@@ -151,7 +170,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success" style="float: right">Cadastrar</button>
+            <button id="btn_enviar" type="submit" class="btn btn-success" style="float: right">Cadastrar</button>
         </form>
     </main>
     <!-- Footer -->
@@ -188,6 +207,11 @@
                 var validation = Array.prototype.filter.call(forms, function(form) {
                     form.addEventListener('submit', function(event) {
                         if (form.checkValidity() === false) {
+                            // button css
+                            document.getElementById('btn_enviar').className = 'btn btn-danger';
+                            document.getElementById('btn_enviar').disabled = true;
+                            document.getElementById('btn_enviar').style.cursor = 'not-allowed';
+
                             event.preventDefault();
                             event.stopPropagation();
                         }

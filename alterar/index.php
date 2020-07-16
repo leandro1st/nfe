@@ -41,25 +41,35 @@ if (isset($_POST['nome_produto'])) {
                     url: "alterar.php",
                     data: $("#form-alterar").serialize(),
                     success: function(data) {
-                        document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.toUpperCase();
-                        document.getElementById('titulo_principal').innerHTML = nome.toUpperCase();
-                        document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.toUpperCase();
+                        // unfocusing input 'athos' to avoid 1+ submit
+                        $('#athos').blur();
+                        // alert(data);
+                        // se código athos não existir no db
+                        if (data == "1" || data == "2") {
+                            document.getElementById('titulo_site').innerHTML = 'NF-e | ' + nome.trim().toUpperCase();
+                            document.getElementById('titulo_principal').innerHTML = nome.trim().toUpperCase();
+                            document.getElementById('link_titulo').innerHTML = '<i class="fas fa-search text-white"></i> Pesquisar | ' + nome.trim().toUpperCase();
 
-                        // informações do modal
-                        document.getElementById('nome_antigo_modal').innerHTML = document.getElementById('nome_antigo').value;
-                        document.getElementById('nome_novo_modal').innerHTML = nome.toUpperCase();
-                        document.getElementById('athos_antigo_modal').innerHTML = document.getElementById('athos_antigo').value;
-                        document.getElementById('athos_novo_modal').innerHTML = athos;
-                        document.getElementById('referencia_antiga_modal').innerHTML = document.getElementById('referencia_antiga').value;
-                        document.getElementById('referencia_nova_modal').innerHTML = id;
-                        $('#modalAlteradoInfo').modal('show');
+                            // informações do modal
+                            document.getElementById('nome_antigo_modal').innerHTML = document.getElementById('nome_antigo').value.trim();
+                            document.getElementById('nome_novo_modal').innerHTML = nome.trim().toUpperCase();
+                            document.getElementById('athos_antigo_modal').innerHTML = document.getElementById('athos_antigo').value.trim();
+                            document.getElementById('athos_novo_modal').innerHTML = athos.trim().toUpperCase();
+                            document.getElementById('referencia_antiga_modal').innerHTML = document.getElementById('referencia_antiga').value.trim();
+                            document.getElementById('referencia_nova_modal').innerHTML = id.trim().toUpperCase();
+                            $('#modalAlteradoInfo').modal('show');
+                        } else {
+                            document.getElementById('span_repetido').innerHTML = "O código Athos <span class='lead text-warning'><b>(" + athos + ")</b></span> já está sendo utilizado por <span class='lead text-warning'><b>" + data + "</b></span>!";
+                            $('#modalRepetido').modal('show');
+                            document.getElementById('athos').value = document.getElementById('athos_antigo').value;
+                        }
                     },
                 });
             }
 
             // Resentando o valor do input, pois o cursor estava começando da direita
             $(document).ready(function() {
-                var copia_nome = document.getElementById('nome').value;
+                var copia_nome = document.getElementById('nome').value.trim();
                 document.getElementById('nome').value = '';
                 document.getElementById('nome').value = copia_nome;
                 document.getElementById('nome').focus();
@@ -300,6 +310,29 @@ if (isset($_POST['nome_produto'])) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-dismiss="modal" onclick="">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal codigo athos repetido -->
+        <div class="modal fade" id="modalRepetido" tabindex="-1" role="dialog" aria-labelledby="modalRepetidoTitle" aria-hidden="true" onkeypress="$('#modalRepetido').modal('toggle');">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-warning" id="modalTitle">
+                            Código Athos repetido!
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <span id="span_repetido"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="">OK</button>
                     </div>
                 </div>
             </div>

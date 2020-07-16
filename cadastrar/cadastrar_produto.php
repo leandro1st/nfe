@@ -22,6 +22,7 @@ if (!isset($_POST['nome'])) {
         <title>NF-e | Cadastrar Produtos</title>
         <link rel="shortcut icon" href="../imagens/nfe.ico" type="image/x-icon">
         <link rel="stylesheet" href="../externo/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <link rel="stylesheet" href="../externo/style.css">
         <script src="../externo/jquery/jquery-3.4.0.min.js"></script>
         <script src="../externo/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -48,76 +49,6 @@ if (!isset($_POST['nome'])) {
                         <div class="modal-body">
                             <div class="container">
                                 <h5 class="lead"><?php echo $n ?> já foi cadastrado uma vez!</h5>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.replace('./')">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php } else if ($n == "" && $athos == "" && $cod == "") { ?>
-            <div class="modal fade" id="modalCadastrado" tabindex="-1" role="dialog" aria-labelledby="modalCadastradoTitle" aria-hidden="true" onblur="window.location.replace('./')" onkeypress="window.location.replace('./')">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modalTitle">
-                                <font class="text-danger">Nenhuma informação fornecida!</font>
-                            </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.replace('./')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <h5 class="lead">Nome, código Athos e referência do produto não foram fornecidos!</h5>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="window.location.replace('./')">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php } else if ($n == "" || $athos == "" || $cod == "") { ?>
-            <div class="modal fade" id="modalCadastrado" tabindex="-1" role="dialog" aria-labelledby="modalCadastradoTitle" aria-hidden="true" onblur="window.location.replace('./')" onkeypress="window.location.replace('./')">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modalTitle">
-                                <?php if (($n == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $n)) && ($athos == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $athos))) { ?>
-                                    <font class="text-danger">Nome e código Athos não fornecidos!</font>
-                                <?php } else if (($n == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $n)) && ($cod == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $cod))) { ?>
-                                    <font class="text-danger">Nome e referência não fornecidos!</font>
-                                <?php } else if (($athos == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $athos)) && ($cod == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $cod))) { ?>
-                                    <font class="text-danger">Código Athos e referência não fornecidos!</font>
-                                <?php } else if ($n == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $n)) { ?>
-                                    <font class="text-danger">Nenhum nome fornecido!</font>
-                                <?php } else if ($athos == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $athos)) { ?>
-                                    <font class="text-danger">Nenhum código Athos fornecido!</font>
-                                <?php } else if ($cod == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $cod)) { ?>
-                                    <font class="text-danger">Nenhuma referência fornecida!</font>
-                                <?php } ?>
-                            </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.replace('./')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <?php if (($n == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $n)) && ($athos == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $athos))) { ?>
-                                    <h5 class="lead">O nome e código Athos do produto não foram fornecidos!</h5>
-                                <?php } else if (($n == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $n)) && ($cod == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $cod))) { ?>
-                                    <h5 class="lead">O nome e referência do produto não foram fornecidos!</h5>
-                                <?php } else if (($athos == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $athos)) && ($cod == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $cod))) { ?>
-                                    <h5 class="lead">O código Athos e referência do produto não foram fornecidos!</h5>
-                                <?php } else if ($n == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $n)) { ?>
-                                    <h5 class="lead">O nome do produto não foi fornecido!</h5>
-                                <?php } else if ($athos == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $athos)) { ?>
-                                    <h5 class="lead">O código Athos do produto não foi fornecido!</h5>
-                                <?php } else if ($cod == "" || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $cod)) { ?>
-                                    <h5 class="lead">A referência do produto não foi fornecida!</h5>
-                                <?php } ?>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -154,13 +85,12 @@ if (!isset($_POST['nome'])) {
 
                                     $dir = '../produtos/';
                                     $extensions = array("jpeg", "jpg", "png", "gif", "webp");
-                                    
+
                                     if ($file_ext == "") {
                                         #
                                         $adicionar = mysqli_query($connect, "INSERT INTO $vendas(cod_athos, id, nome, quantidade, imagem) VALUES('$athos','$cod', '$n', '0', '')");
-                                    }
-                                    else if (in_array($file_ext, $extensions) === false) {
-                                        echo "<span class='text-muted'>Arquivo inválido, somente JPEG, PNG, GIF ou WEBP são aceitos.</span><br>";
+                                    } else if (in_array($file_ext, $extensions) === false) {
+                                        echo "<div class='row' style='margin-bottom: 0.5rem'><div class='col'><span class='text-muted'><i class='fas fa-exclamation-triangle'></i> Imagem não foi cadastrada, pois somente JPEG, PNG, GIF ou WEBP são aceitos.</span></div></div>";
                                         $adicionar = mysqli_query($connect, "INSERT INTO $vendas(cod_athos, id, nome, quantidade, imagem) VALUES('$athos','$cod', '$n', '0', '')");
                                     } else {
                                         move_uploaded_file($file_tmp, $dir . $nome_novo);
@@ -170,15 +100,7 @@ if (!isset($_POST['nome'])) {
                                 if ($adicionar) { ?>
                                     <div class="row">
                                         <div class="col-4" style="text-align: right; padding: 0px; margin-left: -35px">
-                                            <h5 class="font-weight-bold">Nome:</h5>
-                                        </div>
-                                        <div class="col" style="padding-left: 10px">
-                                            <h5 class="lead"><?php echo $n ?></h5>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4" style="text-align: right; padding: 0px; margin-left: -35px">
-                                            <h5 class="font-weight-bold">Cód. Athos:</h5>
+                                            <h5 class="lead"><b>Cód. Athos:</b></h5>
                                         </div>
                                         <div class="col" style="padding-left: 10px">
                                             <h5 class="lead"><?php echo $athos ?></h5>
@@ -186,7 +108,15 @@ if (!isset($_POST['nome'])) {
                                     </div>
                                     <div class="row">
                                         <div class="col-4" style="text-align: right; padding: 0px; margin-left: -35px">
-                                            <h5 class="font-weight-bold">Referência:</h5>
+                                            <h5 class="lead"><b>Nome:</b></h5>
+                                        </div>
+                                        <div class="col" style="padding-left: 10px">
+                                            <h5 class="lead"><?php echo $n ?></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4" style="text-align: right; padding: 0px; margin-left: -35px">
+                                            <h5 class="lead"><b>Referência:</b></h5>
                                         </div>
                                         <div class="col" style="padding-left: 10px">
                                             <h5 class="lead"><?php echo $cod ?></h5>
