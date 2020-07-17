@@ -91,6 +91,23 @@ if (isset($_POST['nome_produto'])) {
                         .appendTo(ul);
                 };
             });
+
+            // validador de input
+            function validar_inputs() {
+                var nome_input = $("#nome").val().trim();
+                var athos_input = $("#athos").val().trim();
+                var referencia_input = $("#id").val().trim();
+
+                if (nome_input && athos_input && referencia_input) {
+                    document.getElementById('btn_enviar').className = 'btn btn-lg btn-success';
+                    document.getElementById('btn_enviar').disabled = false;
+                    document.getElementById('btn_enviar').style.cursor = 'pointer';
+                } else {
+                    document.getElementById('btn_enviar').className = 'btn btn-lg btn-danger';
+                    document.getElementById('btn_enviar').disabled = true;
+                    document.getElementById('btn_enviar').style.cursor = 'not-allowed';
+                }
+            }
         </script>
     </head>
 
@@ -165,7 +182,7 @@ if (isset($_POST['nome_produto'])) {
             $contador = 0;
             if ($numero > 0) {
             ?>
-                <form id="form-alterar" method="POST" onsubmit="event.preventDefault(); alterar(document.getElementById('nome').value, document.getElementById('athos').value, document.getElementById('id').value); return false;">
+                <form id="form-alterar" method="POST" class="needs-validation" novalidate onsubmit="event.preventDefault(); alterar(document.getElementById('nome').value, document.getElementById('athos').value, document.getElementById('id').value); return false;">
                     <div class="card mb-3">
                         <div class="row">
                             <div class="col-md-3" style="padding: 22px 0px 0px 40px">
@@ -193,31 +210,46 @@ if (isset($_POST['nome_produto'])) {
                                         <small>*Não é necessário preencher todos os campos!</small>
                                     </p> -->
                                     <p class="card-text">
-                                        <label for="nome" class="lead">
-                                            <b>Nome novo:</b>
-                                        </label>
-                                        <!-- Nome antigo modal -->
-                                        <input type="hidden" id="nome_antigo" class="form-control" value="<?php echo $vetor['nome'] ?>">
-                                        <input type="text" id="nome" name="nome_novo" class="form-control" placeholder="Nome novo" value="<?php echo $vetor['nome'] ?>">
+                                        <div class="form-group">
+                                            <label for="nome" class="lead">
+                                                <b>Nome novo:</b>
+                                            </label>
+                                            <!-- Nome antigo modal -->
+                                            <input type="hidden" id="nome_antigo" class="form-control" value="<?php echo $vetor['nome'] ?>">
+                                            <input type="text" id="nome" name="nome_novo" class="form-control" placeholder="Nome novo" value="<?php echo $vetor['nome'] ?>" required onkeyup="validar_inputs()">
+                                            <div class="invalid-feedback">
+                                                Forneça o nome novo do produto!
+                                            </div>
+                                        </div>
                                     </p>
                                     <p class="card-text">
-                                        <label for="athos" class="lead">
-                                            <b>Código Athos novo:</b>
-                                        </label>
-                                        <!-- Código athos antigo modal -->
-                                        <input type="hidden" id="athos_antigo" class="form-control" value="<?php echo $vetor['cod_athos'] ?>">
-                                        <input type="text" id="athos" name="athos_novo" class="form-control" placeholder="Novo código Athos" value="<?php echo $vetor['cod_athos'] ?>">
+                                        <div class="form-group">
+                                            <label for="athos" class="lead">
+                                                <b>Código Athos novo:</b>
+                                            </label>
+                                            <!-- Código athos antigo modal -->
+                                            <input type="hidden" id="athos_antigo" class="form-control" value="<?php echo $vetor['cod_athos'] ?>">
+                                            <input type="text" id="athos" name="athos_novo" class="form-control" placeholder="Novo código Athos" value="<?php echo $vetor['cod_athos'] ?>" required onkeyup="validar_inputs()">
+                                            <div class="invalid-feedback">
+                                                Forneça o código Athos novo do produto!
+                                            </div>
+                                        </div>
                                     </p>
                                     <p class="card-text">
-                                        <label for="id" class="lead">
-                                            <b>Referência nova:</b>
-                                        </label>
-                                        <!-- Referência antiga modal -->
-                                        <input type="hidden" id="referencia_antiga" class="form-control" value="<?php echo $vetor['id'] ?>">
-                                        <input type="text" id="id" name="codigo_novo" class="form-control" placeholder="Nova referência Athos" value="<?php echo $vetor['id'] ?>">
+                                        <div class="form-group">
+                                            <label for="id" class="lead">
+                                                <b>Referência nova:</b>
+                                            </label>
+                                            <!-- Referência antiga modal -->
+                                            <input type="hidden" id="referencia_antiga" class="form-control" value="<?php echo $vetor['id'] ?>">
+                                            <input type="text" id="id" name="codigo_novo" class="form-control" placeholder="Nova referência Athos" value="<?php echo $vetor['id'] ?>" required onkeyup="validar_inputs()">
+                                            <div class="invalid-feedback">
+                                                Forneça a referência nova do produto!
+                                            </div>
+                                        </div>
                                     </p>
                                     <input type="hidden" name="codigo" class="form-control" value="<?php echo $vetor['codigo'] ?>">
-                                    <button type="submit" class="btn btn-lg btn-success" style="float: right">Alterar</button>
+                                    <button id="btn_enviar" type="submit" class="btn btn-lg btn-success" style="float: right">Alterar</button>
                                 </div>
                             </div>
                         </div>
@@ -338,6 +370,45 @@ if (isset($_POST['nome_produto'])) {
             </div>
         </div>
 
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+                'use strict';
+                window.addEventListener('load', function() {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+
+            // onkeyup validation
+            (function() {
+                'use strict';
+                window.addEventListener('load', function() {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('keyup', function(event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
         <footer id="footer1" class="footer" style="margin-bottom: -250px">
             <!-- Footer Elements -->
             <div style="background-color: #3e4551; padding: 16px">

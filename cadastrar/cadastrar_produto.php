@@ -48,7 +48,7 @@ if (!isset($_POST['nome'])) {
                         </div>
                         <div class="modal-body">
                             <div class="container">
-                                <h5 class="lead"><?php echo $n ?> já foi cadastrado uma vez!</h5>
+                                <h5 class="lead"><b><?php echo $n ?></b> já foi cadastrado uma vez!</h5>
                             </div>
                         </div>
                         <div class="modal-footer">
