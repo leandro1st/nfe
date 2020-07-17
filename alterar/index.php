@@ -381,6 +381,11 @@ if (isset($_POST['nome_produto'])) {
                     var validation = Array.prototype.filter.call(forms, function(form) {
                         form.addEventListener('submit', function(event) {
                             if (form.checkValidity() === false) {
+                                // button css
+                                document.getElementById('btn_enviar').className = 'btn btn-danger';
+                                document.getElementById('btn_enviar').disabled = true;
+                                document.getElementById('btn_enviar').style.cursor = 'not-allowed';
+
                                 event.preventDefault();
                                 event.stopPropagation();
                             }
