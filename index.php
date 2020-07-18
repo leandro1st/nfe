@@ -350,8 +350,8 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 										<font id="qntd-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" title="Última contagem: <?php echo $vetor['quantidade'] ?>"><?php echo $vetor['quantidade']; ?></font>
 									</b>
 								</td>
-								<td align="center"><button class="btn btn-success" type="button" onclick="cadastrar('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>', '<?php echo $vetor['nome'] ?>')">+1</button></td>
-								<td align="center"><button class="btn btn-danger" type="button" onclick="remover('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>', '<?php echo $vetor['nome'] ?>')">-1</button></td>
+								<td align="center"><button class="btn btn-success" type="button" onclick="cadastrar('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>', '<?php echo $vetor['nome'] ?>')" onkeydown="return event.key != 'Enter';">+1</button></td>
+								<td align="center"><button class="btn btn-danger" type="button" onclick="remover('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>', '<?php echo $vetor['nome'] ?>')" onkeydown="return event.key != 'Enter';">-1</button></td>
 							</tr>
 						</form>
 					<?php } ?>
