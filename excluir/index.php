@@ -137,7 +137,7 @@ $numero = mysqli_num_rows($procurar);
                                 <td class="align-middle" align="center"><b><?php echo $vetor['codigo']; ?></b></td>
                                 <td class="align-middle" align="center"><b><?php echo $vetor['cod_athos']; ?></b></td>
                                 <td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
-                                <td class="align-middle" width="75%"><b><?php echo $vetor['nome']; ?></b></td>
+                                <td class="align-middle" width="75%" style="max-width: 400px; word-wrap: break-word;"><b><?php echo $vetor['nome']; ?></b></td>
                                 <td align="center" width="7%">
                                     <i class="fas fa-times" data-toggle="modal" data-target="#modalExcluir" onclick="nomeProduto('<?php echo $vetor['nome']; ?>', '<?php echo $vetor['codigo']; ?>')" style="color: red; font-size: 28px; cursor: pointer;">
                                 </td>
@@ -184,8 +184,8 @@ $numero = mysqli_num_rows($procurar);
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modalTitle" class="text-danger">
-                        Deseja realmente excluir <font id="nome1_modal"></font>?
+                    <h4 class="modal-title" id="modalTitle" class="text-danger" style="word-break: break-word">
+                        Deseja realmente excluir <font color="#d9534f" id="nome1_modal"></font>?
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -193,7 +193,7 @@ $numero = mysqli_num_rows($procurar);
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col" style="word-break: break-word">
                             <input id="id_modal" type="hidden" value="">
                             <h5 class="text-warning">Você irá excluir <font id="nome2_modal"></font>!</h5>
                         </div>

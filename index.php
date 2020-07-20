@@ -217,7 +217,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 			</form>
 		</div>
 	</nav>
-	<p class="lead text-white" style="position: absolute; margin: 15px 0 0 25px; font-size: 18px">
+	<p class="lead text-white" style="position: absolute; margin: 15px 25px 0 25px; font-size: 18px; word-break: break-word;">
 		<b>Última modificação:</b>
 		<span id="ultima_modificacao_top">
 			<?php if ($vetor_ultima_alteracao['ultima_mod'] != '0000-00-00 00:00:00') {
@@ -331,7 +331,7 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 								<td class="align-middle" align="center"><b><?php echo $vetor['codigo']; ?></b></td>
 								<td class="align-middle" align="center"><b><?php echo $vetor['cod_athos']; ?></b></td>
 								<td class="align-middle" align="center"><b><?php echo $vetor['id']; ?></b></td>
-								<td class="align-middle" width="70%">
+								<td class="align-middle" width="70%" style="max-width: 400px; word-wrap: break-word;">
 									<!--  data-toggle="tooltip" data-html="true" title="<img width='100px' src='produtos/<?php echo $vetor['imagem'] ?>'>" -->
 									<b><?php echo $vetor['nome']; ?></b>
 									<span id="ultima_modificacao_produto-<?php echo $vetor['codigo'] ?>">

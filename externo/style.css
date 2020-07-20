@@ -199,3 +199,8 @@ a:link {
     position: sticky;
     top: 60px;
 }
+
+/* vertical align for table lines/columns */
+.table>tbody>tr>td {
+    vertical-align: middle;
+}

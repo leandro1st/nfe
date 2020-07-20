@@ -145,7 +145,7 @@ if (isset($_POST['nome_produto'])) {
             </div>
         </nav>
         <nav aria-label="breadcrumb" style="position: absolute; z-index: 1;">
-            <ol class="breadcrumb" style="background: none; margin: 0;">
+            <ol class="breadcrumb" style="background: none; margin: 0; word-break: break-word;">
                 <li class="breadcrumb-item"><a href="../"><i class="fas fa-home"></i> Página Inicial</a></li>
                 <li class="breadcrumb-item active">
                     <a id="link_titulo" href="javascript:void(0)" class="none_li"><i class="fas fa-search text-white"></i>
@@ -164,7 +164,7 @@ if (isset($_POST['nome_produto'])) {
         </nav>
         <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
             <center>
-                <h1>
+                <h1 style="word-wrap: break-word;">
                     <font id="titulo_principal" color="white">
                         <?php if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) { ?>
                             Pesquisar
@@ -307,10 +307,10 @@ if (isset($_POST['nome_produto'])) {
                                         <td class="text-right">
                                             <b>Nome</b>
                                         </td>
-                                        <td>
+                                        <td style="word-break: break-word">
                                             <span id="nome_antigo_modal"></span>
                                         </td>
-                                        <td>
+                                        <td style="word-break: break-word">
                                             <span class="text-success" id="nome_novo_modal"></span>
                                         </td>
                                     </tr>
@@ -359,7 +359,7 @@ if (isset($_POST['nome_produto'])) {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="container">
+                        <div class="container" style="word-break: break-word">
                             <span id="span_repetido"></span>
                         </div>
                     </div>
