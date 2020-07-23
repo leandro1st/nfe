@@ -62,7 +62,7 @@ if (!isset($_POST['nome'])) {
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modalTitle">
+                            <h4 class="modal-title" id="modalTitle" style="word-break: break-word">
                                 <font class="text-success"><?php echo $n . " cadastrado com sucesso!" ?></font>
                             </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.replace('./')">
@@ -111,7 +111,7 @@ if (!isset($_POST['nome'])) {
                                             <h5 class="lead"><b>Nome:</b></h5>
                                         </div>
                                         <div class="col" style="padding-left: 10px">
-                                            <h5 class="lead"><?php echo $n ?></h5>
+                                            <h5 class="lead" style="word-break: break-word"><?php echo $n ?></h5>
                                         </div>
                                     </div>
                                     <div class="row">
