@@ -80,7 +80,7 @@ if (!isset($_POST['nome'])) {
                                     $file_explode = explode('.', $img);
                                     $file_ext = strtolower(end($file_explode));
                                     // $nome_sem_extensao = strtolower($file_explode[0]);
-                                    $nome_arquivo = str_replace(' ', '-', strtolower($n));
+                                    $nome_arquivo = str_replace(' ', '-', mb_convert_case(trim($_POST['nome']), MB_CASE_LOWER, 'utf-8'));
                                     $nome_novo = $nome_arquivo . "_" . date("d-m-Y_H-i-s") . "." . $file_ext;
 
                                     $dir = '../produtos/';
