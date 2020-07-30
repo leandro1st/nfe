@@ -40,7 +40,7 @@ if (!isset($_POST['nome'])) {
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" id="modalTitle">
-                                <font class="text-warning"><?php echo $n . " já existe!" ?></font>
+                                <span class="text-warning"><?php echo $n . " já existe!" ?></span>
                             </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.replace('./')">
                                 <span aria-hidden="true">&times;</span>
@@ -63,7 +63,7 @@ if (!isset($_POST['nome'])) {
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" id="modalTitle" style="word-break: break-word">
-                                <font class="text-success"><?php echo $n . " cadastrado com sucesso!" ?></font>
+                                <span class="text-success"><?php echo $n . " cadastrado com sucesso!" ?></span>
                             </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.replace('./')">
                                 <span aria-hidden="true">&times;</span>

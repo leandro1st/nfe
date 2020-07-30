@@ -96,11 +96,9 @@ $numero = mysqli_num_rows($procurar);
         </ol>
     </nav>
     <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
-        <center>
-            <h1>
-                <font color="white">Excluir Produtos</font>
-            </h1>
-        </center>
+        <h1 class="text-center montara">
+            Excluir Produtos
+        </h1>
     </div>
     <main class="container">
         <?php if ($numero > 0) { ?>
@@ -162,13 +160,19 @@ $numero = mysqli_num_rows($procurar);
     <footer id="footer1" class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
-            <center>
-                <div class="row" style="display: inline-block">
-                    <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 offset-md-3 text-right">
+                        <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <a href="https://github.com/leandro1st" class="btn-social btn-github"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-            </center>
+            </div>
         </div>
         <!-- Footer Elements -->
         <!-- Copyright -->
@@ -184,8 +188,8 @@ $numero = mysqli_num_rows($procurar);
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modalTitle" class="text-danger" style="word-break: break-word">
-                        Deseja realmente excluir <font color="#d9534f" id="nome1_modal"></font>?
+                    <h4 class="modal-title text-danger" id="modalTitle" style="word-break: break-word">
+                        Deseja realmente excluir <span id="nome1_modal"></span>?
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -195,7 +199,7 @@ $numero = mysqli_num_rows($procurar);
                     <div class="row">
                         <div class="col" style="word-break: break-word">
                             <input id="id_modal" type="hidden" value="">
-                            <h5 class="text-warning">Você irá excluir <font id="nome2_modal"></font>!</h5>
+                            <h5 class="text-warning">Você irá excluir <span id="nome2_modal"></span>!</h5>
                         </div>
                     </div>
                 </div>

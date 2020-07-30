@@ -163,19 +163,17 @@ if (isset($_POST['nome_produto'])) {
             </ol>
         </nav>
         <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
-            <center>
-                <h1 style="word-wrap: break-word;">
-                    <font id="titulo_principal" color="white">
-                        <?php if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) { ?>
-                            Pesquisar
-                        <?php } else if ($numero > 0) {
-                            echo $vetor['nome'];
-                        } else {
-                            echo "Pesquisar";
-                        } ?>
-                    </font>
-                </h1>
-            </center>
+            <h1 class="text-center" style="word-wrap: break-word;">
+                <span class="montara" id="titulo_principal">
+                    <?php if ($produto == '' || preg_match('/^[\pZ\pC]+|[\pZ\pC]+$/u', $produto)) { ?>
+                        Pesquisar
+                    <?php } else if ($numero > 0) {
+                        echo $vetor['nome'];
+                    } else {
+                        echo "Pesquisar";
+                    } ?>
+                </span>
+            </h1>
         </div>
         <main class="container">
             <?php
@@ -194,10 +192,10 @@ if (isset($_POST['nome_produto'])) {
                                 if (($file_ext == "") || (in_array($file_ext, $extensions) === false)) { ?>
                                     <fieldset id="sem_imagem" class="img-thumbnail text-center" style="padding: 40px; background-color: #575759">
                                         <div>
-                                            <i class="fas fa-image" style="font-size: 40px; color: white; margin-bottom: 10px"></i>
+                                            <i class="fas fa-image text-white" style="font-size: 40px; margin-bottom: 10px"></i>
                                         </div>
                                         <div style="margin: 0 -40px 0 -40px">
-                                            <span class="font-weight-bold" style="font-size: 14px; color: white">IMAGEM NÃO CADASTRADA</span>
+                                            <span class="font-weight-bold text-white" style="font-size: 14px">IMAGEM NÃO CADASTRADA</span>
                                         </div>
                                     </fieldset>
                                 <?php } else { ?>
@@ -417,13 +415,19 @@ if (isset($_POST['nome_produto'])) {
         <footer id="footer1" class="footer" style="margin-bottom: -250px">
             <!-- Footer Elements -->
             <div style="background-color: #3e4551; padding: 16px">
-                <center>
-                    <div class="row" style="display: inline-block">
-                        <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
-                        <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-2 offset-md-3 text-right">
+                            <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <a href="https://github.com/leandro1st" class="btn-social btn-github"><i class="fab fa-github"></i></a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
-                </center>
+                </div>
             </div>
             <!-- Footer Elements -->
             <!-- Copyright -->

@@ -38,7 +38,7 @@ if (isset($_GET["term"])) {
             $extensions = array("jpeg", "jpg", "png", "gif", "webp");
 
             if (($file_ext == "") || (in_array($file_ext, $extensions) === false)) {
-                $temp_array['label'] = '<div class="row" style="margin: 0; display: flex; justify-content: center; align-items: center"><div class="col-4"><fieldset id="sem_imagem" class="img-thumbnail text-center" style="padding: 15px 0px 10px 0px; background-color: #575759"><div><i class="fas fa-image" style="font-size: 25px; color: white"></i></fieldset></div><div class="col" style="word-wrap: break-word;">' . $row['nome'] . '</div></div>';
+                $temp_array['label'] = '<div class="row" style="margin: 0; display: flex; justify-content: center; align-items: center"><div class="col-4"><fieldset id="sem_imagem" class="img-thumbnail text-center" style="padding: 15px 0px 10px 0px; background-color: #575759"><div><i class="fas fa-image text-white" style="font-size: 25px"></i></fieldset></div><div class="col" style="word-wrap: break-word;">' . $row['nome'] . '</div></div>';
             } else {
                 $temp_array['label'] = '<div class="row" style="margin: 0; display: flex; justify-content: center; align-items: center"><div class="col-4"><img src="../produtos/' . $row['imagem'] . '" width="70"></div><div class="col" style="word-wrap: break-word">' . $row['nome'] . '</div></div>';
             }

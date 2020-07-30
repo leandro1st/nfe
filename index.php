@@ -228,51 +228,49 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 		</span>
 	</p>
 	<div class="jumbotron" style="background-image: url('imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
-		<center>
-			<h1 style="color: white">
-				<?php
-				$meses = array(
-					'01' => 'Janeiro',
-					'02' => 'Fevereiro',
-					'03' => 'Março',
-					'04' => 'Abril',
-					'05' => 'Maio',
-					'06' => 'Junho',
-					'07' => 'Julho',
-					'08' => 'Agosto',
-					'09' => 'Setembro',
-					'10' => 'Outubro',
-					'11' => 'Novembro',
-					'12' => 'Dezembro'
-				);
-				date_default_timezone_set('America/Sao_Paulo');
-				// echo date('d-m-Y H:i:s');
-				$mes = $meses[date('m')];
-				?>
-				<?php print $mes . ' - ' . date('Y'); ?>
-				<div class="form-inline" style="position: absolute; left: 75%; top: 157px">
-					<form action="export.php" id="exportar_excel" method="POST">
-						<select class="form-control" id="mes_ano" name="mes_ano" style="width: 125px;">
-							<option id="jan" value="Janeiro">Janeiro</option>
-							<option id="fev" value="Fevereiro">Fevereiro</option>
-							<option id="mar" value="Março">Março</option>
-							<option id="abr" value="Abril">Abril</option>
-							<option id="mai" value="Maio">Maio</option>
-							<option id="jun" value="Junho">Junho</option>
-							<option id="jul" value="Julho">Julho</option>
-							<option id="ago" value="Agosto">Agosto</option>
-							<option id="set" value="Setembro">Setembro</option>
-							<option id="out" value="Outubro">Outubro</option>
-							<option id="nov" value="Novembro">Novembro</option>
-							<option id="dez" value="Dezembro">Dezembro</option>
-						</select>
-						<button class="btn btn-success">
-							Gerar Excel <i class="far fa-file-excel"></i>
-						</button>
-					</form>
-				</div>
-			</h1>
-		</center>
+		<h1 class="text-center montara">
+			<?php
+			$meses = array(
+				'01' => 'Janeiro',
+				'02' => 'Fevereiro',
+				'03' => 'Março',
+				'04' => 'Abril',
+				'05' => 'Maio',
+				'06' => 'Junho',
+				'07' => 'Julho',
+				'08' => 'Agosto',
+				'09' => 'Setembro',
+				'10' => 'Outubro',
+				'11' => 'Novembro',
+				'12' => 'Dezembro'
+			);
+			date_default_timezone_set('America/Sao_Paulo');
+			// echo date('d-m-Y H:i:s');
+			$mes = $meses[date('m')];
+			?>
+			<?php print $mes . ' - ' . date('Y'); ?>
+			<div class="form-inline" style="position: absolute; left: 75%; top: 157px">
+				<form action="export.php" id="exportar_excel" method="POST">
+					<select class="form-control" id="mes_ano" name="mes_ano" style="width: 125px;">
+						<option id="jan" value="Janeiro">Janeiro</option>
+						<option id="fev" value="Fevereiro">Fevereiro</option>
+						<option id="mar" value="Março">Março</option>
+						<option id="abr" value="Abril">Abril</option>
+						<option id="mai" value="Maio">Maio</option>
+						<option id="jun" value="Junho">Junho</option>
+						<option id="jul" value="Julho">Julho</option>
+						<option id="ago" value="Agosto">Agosto</option>
+						<option id="set" value="Setembro">Setembro</option>
+						<option id="out" value="Outubro">Outubro</option>
+						<option id="nov" value="Novembro">Novembro</option>
+						<option id="dez" value="Dezembro">Dezembro</option>
+					</select>
+					<button class="btn btn-success">
+						Gerar Excel <i class="far fa-file-excel"></i>
+					</button>
+				</form>
+			</div>
+		</h1>
 	</div>
 	<main class="container">
 		<?php if ($numero > 0) { ?>
@@ -342,12 +340,12 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 								</td>
 								<td class="align-middle" width="5%" align="center" style="font-size:18px">
 									<b>
-										<font id="adicionado-<?php echo $vetor['codigo']; ?>">0</font>
+										<span id="adicionado-<?php echo $vetor['codigo']; ?>">0</span>
 									</b>
 								</td>
 								<td class="align-middle" width="5%" align="center" style="font-size:18px">
 									<b>
-										<font id="qntd-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" title="Última contagem: <?php echo $vetor['quantidade'] ?>"><?php echo $vetor['quantidade']; ?></font>
+										<span id="qntd-<?php echo $vetor['codigo']; ?>" data-toggle="tooltip" data-html="true" title="Última contagem: <?php echo $vetor['quantidade'] ?>"><?php echo $vetor['quantidade']; ?></span>
 									</b>
 								</td>
 								<td align="center"><button class="btn btn-success" type="button" onclick="cadastrar('<?php echo $vetor['codigo'] ?>', document.getElementById('cont').innerHTML, '<?php echo $vetor['quantidade'] ?>', '<?php echo $vetor['nome'] ?>')" onkeydown="return event.key != 'Enter';">+1</button></td>
@@ -373,13 +371,19 @@ $vetor_ultima_alteracao = mysqli_fetch_array($pesquisar_ultima_alteracao);
 	<footer id="footer1" class="footer" style="margin-bottom: -250px">
 		<!-- Footer Elements -->
 		<div style="background-color: #3e4551; padding: 16px">
-			<center>
-				<div class="row" style="display: inline-block">
-					<a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
-					<a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
-					<a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-2 offset-md-3 text-right">
+						<a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook"><i class="fab fa-facebook-f"></i></a>
+					</div>
+					<div class="col-md-2 text-center">
+						<a href="https://github.com/leandro1st" class="btn-social btn-github"><i class="fab fa-github"></i></a>
+					</div>
+					<div class="col-md-2">
+						<a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram"><i class="fab fa-instagram"></i></a>
+					</div>
 				</div>
-			</center>
+			</div>
 		</div>
 		<!-- Footer Elements -->
 		<!-- Copyright -->

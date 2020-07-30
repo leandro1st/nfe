@@ -34,7 +34,7 @@ $zerar_observacao = mysqli_query($connect, "UPDATE $observacao SET $ultima_data 
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="modalTitle">
-                        <font class="text-success"><?php echo $contador . " registro(s) zerado(s) com sucesso!" ?></font>
+                        <span class="text-success"><?php echo $contador . " registro(s) zerado(s) com sucesso!" ?></span>
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.replace('../')">
                         <span aria-hidden="true">&times;</span>

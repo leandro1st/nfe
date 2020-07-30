@@ -110,9 +110,7 @@
         </ol>
     </nav>
     <div class="jumbotron" style="background-image: url('../imagens/wallpaper.jpg'); background-size: cover; background-position: center; padding: 100px; border-radius: 0">
-        <center>
-            <h1 style="color: white">Cadastrar Produto</h1>
-        </center>
+        <h1 class="text-center montara">Cadastrar Produto</h1>
     </div>
     <main class="container">
         <form id="form_cadastrar" method="POST" action="cadastrar_produto.php" class="needs-validation" novalidate enctype="multipart/form-data">
@@ -177,13 +175,19 @@
     <footer class="footer" style="margin-bottom: -250px">
         <!-- Footer Elements -->
         <div style="background-color: #3e4551; padding: 16px">
-            <center>
-                <div class="row" style="display: inline-block">
-                    <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook" style="margin-right: 40px;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://github.com/leandro1st" class="btn-social btn-github" style="margin-right: 40px;"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram" style="margin-right: 40px;"><i class="fab fa-instagram"></i></a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 offset-md-3 text-right">
+                        <a href="https://www.facebook.com/sakamototen/" class="btn-social btn-facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <a href="https://github.com/leandro1st" class="btn-social btn-github"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="https://www.instagram.com/sakamototen/" class="btn-social btn-instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-            </center>
+            </div>
         </div>
         <!-- Footer Elements -->
         <!-- Copyright -->
