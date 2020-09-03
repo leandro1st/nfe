@@ -16,8 +16,12 @@ if (isset($_GET["term"])) {
         }
     }
 
-    // query, juntando as strings armazenadas dentro do array $searchTermBits
-    $query = "SELECT * FROM vendas WHERE " . implode(" AND ", $searchTermBits) . " ORDER BY nome ASC";
+    if (empty($searchTermBits)) {
+        $query = "SELECT * FROM vendas ORDER BY nome ASC";
+    } else {
+        // query, juntando as strings armazenadas dentro do array $searchTermBits
+        $query = "SELECT * FROM vendas WHERE " . implode(" AND ", $searchTermBits) . " ORDER BY nome ASC";
+    }
 
     $statement = $connect->prepare($query);
 
